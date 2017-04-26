@@ -1,0 +1,557 @@
+body{
+    padding: 0;
+    margin:0;
+}
+.bodyContent{
+    width: 1200px;
+    margin:0 auto;
+    overflow: hidden;
+    padding-bottom: 50px;
+}
+.content{
+    padding-top: 30px;
+}
+.LoginColor{
+     background-color: #ccc;
+}
+.bgColor{
+    padding: 10px 0;
+    background-color: #000;
+    opacity:0.9;
+}
+.bgColor a{
+    color: #fff;
+}
+.bgColor li:hover a{
+    color: #000;
+}
+.contentBgColor{
+    background:#EDEFF0;
+    margin-top: 20px;
+    padding-top:20px;
+}
+.knowledgeBg{
+    width:100%;
+    margin-top: -30px;
+    margin-bottom:-20px;
+}
+.knowledgeColor{
+    color: #776E73;
+}
+.knowledgeP{
+    width: 800px;
+    margin: 25px auto;
+}
+.knowledgeSize{
+    width: 1000px;
+}
+.sizeColorP{
+    color: #C9D6D8;
+}
+.bg{
+	background: url("../images/bg.jpg") no-repeat ;
+	height:600px;
+}
+.common{
+    background: #fff;
+    margin: 80px 80px 0 0;
+    padding: 20px;
+    width: 400px;
+    opacity: 0.85;
+}
+.imgSize{
+    width:270px;
+    height: 160px !important;
+}
+.forA{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 20px;
+}
+ul>li{
+    list-style: none;
+}
+.addressBg{
+    background: #3C434B;
+    padding: 20px 0;
+    margin-bottom: 0;
+}
+.addressSize{
+   color: #cccccc;
+    width: 1200px;
+    margin:0 auto;
+}
+.addressSize>ul{
+    overflow: hidden;
+    padding:0;
+}
+.addressSize>ul>li{
+    float: left;
+}
+.addressSize>ul>li>a{
+    color: #ffffff;
+    padding: 10px;
+}
+.cricle{
+    width:1200px;
+    height: 360px;
+    margin:0 auto;
+}
+.noblack{
+    font-size:0px;
+}
+.navSearch{
+    margin:10px 40px 0 0;
+}
+.publishTitle{
+    background-image: url("../images/publish/bg.jpg");
+    padding: 50px 0 0 70px;
+    width: 1364px;
+    margin-top: -30px;
+    margin-bottom: -20px;
+}
+.meTitle{
+    padding: 20px 0px 0 30px;
+}
+.meTitle p>a{
+    margin: 5px;
+    padding: 5px 10px;
+}
+a:hover,a:focus{
+    text-decoration: none;
+    cursor: pointer;
+}
+.me{
+    width: 180px;
+    height: 180px;
+    position: relative;
+    margin-bottom: -20px;
+}
+.publishMargin{
+   margin: 70px auto 20px;
+    overflow: hidden;
+}
+.publishMargin>ul{
+    float: left;
+    width: 170px;
+    padding: 30px;
+    border: none;
+}
+.publishMargin>ul>li{
+    font-size: 16px;
+}
+.publishMargin>ul>li>a{
+    width: 100px;
+    padding: 15px;
+    text-align: center;
+}
+.publishMargin>ul>li.active>a{
+   border: 1px solid #ccc;
+   border-radius: 4px 4px 0 0;
+}
+.publishMargin .tabContent{
+    float: left;
+    width: 900px;
+    margin: 10px;
+}
+.publishNav{
+    padding: 0 15px 15px;
+    font-size: 16px;
+    border-bottom: 1px #cccccc solid;
+}
+.publishHidden{
+    width: 160px;
+    height: 20px;
+}
+.publishActive{
+    border-bottom: 1px red solid;
+}
+.publishActive>a{
+    color: red;
+}
+.courseSearch>ul{
+    width:1200px;
+    margin: 10px auto;
+    overflow: hidden;
+    border-bottom: 1px #cccccc solid;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+.courseSearch>ul.lastUl{
+    border-bottom: none;
+}
+.courseSearch>ul>li{
+    float: left;
+    padding: 8px 0;
+    margin: 0 5px;
+}
+.courseSearch>ul>li.active{
+    background: #b92c28;
+}
+.courseSearch>ul>li.active>a{
+    color: #ffffff;
+}
+.courseSearch>ul>li>a{
+    padding:0 10px;
+    color: #0f0f0f;
+}
+.firstTitle{
+    display: inline-block;
+    font-weight: bold;
+    width: 60px;
+    text-align: right;
+}
+.Announcement{
+    border:1px #1A81C5 solid;
+    width: 280px;
+    overflow: hidden;
+    padding: 0;
+    padding-bottom:40px;
+    float: left;
+}
+.moveOuter{
+    height: 350px;
+    overflow: hidden;
+}
+.Announcement .move{
+    position: relative;
+    overflow: hidden;
+}
+.Announcement li{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 5px 10px;
+}
+.AnnouncementOne{
+    background: #3385FF;
+    text-align: center;
+    font-size: 18px;
+    color: #ffffff;
+}
+.Announcement li>a{
+    color: #999999;
+}
+.btnCourse{
+    overflow: hidden;
+    height: 520px;
+}
+.btnCourse li{
+    background: #ffffff;
+    border: 1px #cccccc solid;
+    border-radius: 4px;
+    width:260px;
+    padding-bottom: 20px;
+    float: left;
+    margin:15px;
+}
+.btnCourse>li span,.btnCourse>li h4,.btnCourse>li p{
+    padding:10px 0 0 20px;
+    color: #9399AB;
+}
+.btnCourse>li .btnItemOne{
+    display: block;
+    width: 258px;
+    height: 40px;
+    font-size: 18px;
+    color:#ffffff;
+}
+.yellow{
+    background: #F89B16;
+}
+.pink{
+    background: #F16E93;
+}
+.purple{
+    background: #D072E4;
+}
+.blue{
+    background:#57A0D3;
+}
+.btnCourse>li h4{
+    color: #000;
+}
+.btnCourse>li p{
+    margin-bottom: 20px;
+}
+.photoMe{
+    width: 50px;
+    height: 50px;
+}
+.discussTitle>p{
+    color: #ffffff;
+    padding-bottom: 30px;
+}
+.discussdes{
+    margin-top: 30px;
+    margin-bottom: 0;
+    overflow: hidden;
+}
+.discussMargin{
+    margin-top:30px;
+}
+.discussImg{
+    overflow: hidden;
+    border-bottom: 1px #cccccc solid;
+    margin-bottom: 15px;
+}
+.discussImg>div{
+    float: left;
+}
+.discussImg>div.pingjia{
+    width: 800px;
+    margin:10px 0 10px 30px;
+}
+.addDiscuss{
+    padding-bottom: 60px;
+    width: 647px;
+}
+.addDiscuss textarea{
+    margin: 10px 0;
+}
+#pagination,#pagination2{
+    overflow: hidden;
+    width: 360px;
+    margin: 20px auto;
+}
+#pagination>li,#pagination2>li{
+    list-style: none;
+    float: left;
+    padding: 5px 15px;
+}
+#pagination>li.active,#pagination2>li.active{
+    background: #408CCB;
+}
+#pagination>li.active>a,#pagination2>li.active>a{
+    color: #ffffff;
+}
+.showBlock{
+    height: 60px;
+    overflow: hidden;
+}
+.kongP{
+    font-size: 20px;
+    color: #ccc;
+    margin:20px 0  80px;
+}
+.addPublishTitle{
+    width: 800px;
+    font-size: 24px;
+    font-weight: bolder;
+    margin: 20px auto;
+    text-align: center;
+}
+.addPublishContent{
+    border:1px solid #ccc;
+    padding: 20px;
+}
+.addChapter{
+    overflow: hidden;
+}
+.spanSize{
+    font-size: 16px;
+    font-weight: bold;
+}
+.notesDetail{
+    overflow: hidden;
+}
+.notesDetail>h4{
+    margin:20px 0;
+}
+.notesDetail>h4>a{
+    color: #000;
+}
+.notesDetail p{
+    float: left;
+    /*margin-top: 20px;*/
+}
+.notesDetail p.details{
+    margin-left: 30px;
+    line-height: 27px;
+    width: 650px;
+    height: 81px;
+    overflow: hidden;
+}
+.notesSize{
+    width: 200px;
+    height: 130px;
+}
+.detailsContent{
+    overflow: hidden;
+}
+.detail{
+    width: 800px;
+    /*height: 500px;*/
+    margin-left: 50px;
+    float: left;
+}
+.detail>h1{
+    margin: 20px 0 30px;
+}
+.detail>h1>a{
+    margin-right:50px;
+    margin-top: 15px;
+    font-size: 16px;
+    color: red;
+}
+.meLabel{
+    float: left;
+    width: 280px;
+    height: 320px;
+    padding: 20px 40px;
+    background: #F3F5F7;
+    margin:20px 100px 0 90px;
+    text-align: center;
+}
+.meLabel .labelP{
+    color: #93999F;
+    margin: 15px 0;
+}
+.meLabelImg{
+    width: 100px;
+    height: 100px;
+}
+.contentA{
+    color: #000;
+}
+.changePublish{
+    width: 800px;
+    margin: 10px auto 40px;
+}
+.courseSize{
+    height: 245x;
+}
+.courseSize p{
+    width: 230px;
+    height: 70px;
+    overflow: hidden;
+}
+.moveLeft{
+    margin-left: 42px;
+}
+.related{
+    font-size: 16px;
+    color:#57A0D3;
+    margin: 20px;
+}
+.searchSize{
+    height: 760px;
+}
+.chapterPage{
+    overflow: hidden;
+    width: 800px;
+    margin: 30px auto;
+   
+}
+.chapterPage>button{
+    background-color: #fff;
+    border: none;
+    float: left;
+    padding: 5px 12px;
+}
+.chapterPage>button.active{
+    background-color: #408CCB;
+}
+.chapterPage>button.active>a{
+    color: #fff;
+}
+.unable{
+    color: #ccc;
+}
+pre{
+    background-color: #fff;
+    border: none;
+    font-family: "宋体";
+    font-size: 14px;
+    line-height: 30px;
+    white-space: pre-wrap;
+}
+.offsetLittle{
+    margin-left: 17px;
+}
+.upload{
+    position: relative;
+    top:-15px;
+    display: inline-block;
+    width: 240px;
+}
+.upload>span{
+    display: inline-block;
+    width: 240px;
+    padding: 10px 4px;
+}
+.upload>span.download{
+    font-size: 18px;
+    font-weight: 700px;
+    border-bottom: 1px solid #ccc;
+}
+.dataName{
+    margin-left: 10px;
+}
+.jianjie{
+    float: left;
+    width: 900px;
+}
+.nodeDetele{
+    margin-right: 100px;
+    margin-top: 8px;
+    font-size: 14px;
+    color: red !important;
+}
+.manatitle{
+    width: 200px;
+}
+.manageHeader{
+    height: 81px;
+    background: #5E4586;
+    padding:0 30px;
+    line-height: 71px;
+    color: #fff;
+}
+.manageHeader>i{
+    display: inline-block;
+    background: url("../images/logo.png");
+    background-size: 230px 71px;
+    width: 230px;
+    height: 71px;
+}
+.manageHeader a{
+    color: #4DCE61;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+.manageContent{
+    width: 1200px;
+    margin: 20px auto ;
+}
+.manageContent>ul{
+    float: left;
+}
+.manageContent .managetabs{
+    width: 920px;
+    float: left;
+    padding: 40px 0;
+}
+.manageContent .managetabs th ,.manageContent .managetabs td{
+    text-align: center;
+    line-height: 30px;
+}
+.unauditingtabs{
+    padding: 20px;
+}
+.changeUser{
+    padding: 20px;
+    width: 700px;
+    margin: 30px auto;
+    border: 1px solid #ccc;
+}
+.checked{
+    color: red;
+    margin-left: 10px;
+    margin-top: 8px;
+}
+.subtitle{
+    width: 249px;
+    height: 26px;
+    overflow: hidden;
+}

@@ -1,0 +1,70 @@
+extends 	./header
+block content
+	article.content
+		section.courseSearch
+			ul.first
+				li
+					span.firstTitle 方向：
+				li(class="#{params.det==0?'active':''}")
+					a(href="/toCourse/det/0/topics/#{params.topics}/levels/#{params.levels}/dId/#{params.dId}") 全部
+				-for(var i=0;i < department.length;i++){
+				li(class="#{params.det==department[i].id?'active':''}",val=department[i].id)
+					a(href="/toCourse/det/#{department[i].id}/topics/#{params.topics}/levels/#{params.levels}/dId/#{params.dId}") #{department[i].relName}
+				-}
+			ul
+				li
+					span.firstTitle 知识点：
+				li(class="#{params.topics==0?'active':''}")
+					a(href="/toCourse/det/#{params.det}/topics/0/levels/#{params.levels}/dId/0") 全部
+				-for(var i=0;i < topics.length;i++){
+				-if(params.det == topics[i].d_id)
+					li(class="#{params.topics==topics[i].id?'active':''}")
+						a(href="/toCourse/det/#{params.det}/topics/#{topics[i].id}/levels/#{params.levels}/dId/#{topics[i].d_id}") #{topics[i].name}
+				-if(params.det ==0)
+					li(class="#{params.topics==topics[i].id?'active':''}")
+						a(href="/toCourse/det/#{params.det}/topics/#{topics[i].id}/levels/#{params.levels}/dId/#{topics[i].d_id}") #{topics[i].name}
+				-}
+			ul.lastUl
+				li
+					span.firstTitle 难度：
+				li(class="#{params.levels==0?'active':''}")
+					a(href="/toCourse/det/#{params.det}/topics/#{params.topics}/levels/0/dId/#{params.dId}") 全部
+				-for(var i=0;i < levels.length;i++){
+				li(class="#{params.levels==levels[i].id?'active':''}")
+					a(href="/toCourse/det/#{params.det}/topics/#{params.topics}/levels/#{levels[i].id}/dId/#{params.dId}") #{levels[i].relName}
+				-}
+		section.contentBgColor
+			div.bodyContent
+				ul.Announcement
+					li.AnnouncementOne
+						span 公告
+					section.moveOuter
+						div.move
+							-for(var i=0;i < announcement.length;i++){
+							li
+								a(href="#")
+									span(class="glyphicon glyphicon-star",aria-hidden="true")
+									span #{announcement[i].descript}
+							-}
+				div(class="pageLength",val=filterCourse.length,pagesize="course")
+				ul.btnCourse.outer
+					-for(var i=0;i<filterCourse.length;i++){
+					li.courseSize.inner
+						-var number = i+1;
+						a(href="/toDiscuss/a/#{filterCourse[i].id}")
+							-if(number%2 == 0)
+								span.btnItemOne.pink 
+							-else if(number%3 ==0)
+								span.btnItemOne.yellow
+							-else if(number%5==0)
+								span.btnItemOne.blue
+							-else
+								span.btnItemOne.purple
+							h4 #{filterCourse[i].title}
+							p  #{filterCourse[i].descript}
+							span #{filterCourse[i].relName}
+					-}
+				ul#pagination
+	-if(stu)
+		include includes/modelChange
+	include includes/address

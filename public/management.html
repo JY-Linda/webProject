@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>教育资料共享网站后台管理</title>
+	<link rel="stylesheet" href="frameworks/bootstrap-3.3.0-dist/css/bootstrap.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script type="text/javascript" src="frameworks/jquery-2.1.4/jquery.js"></script>
+	<script type="text/javascript" src="frameworks/bootstrap-3.3.0-dist/js/bootstrap.js"></script>
+</head>
+<body>
+	<div class="manageHeader">
+		<i></i>
+		<div class="pull-right">
+			<span>你好,管理员</span>
+			<a  href="">退出</a>
+		</div>
+		
+	</div>
+	<div class="publishMargin manageContent">
+		 <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#uermanage" aria-controls="uermanage" role="tab" data-toggle="tab">用户管理</a></li>
+            <li role="presentation"><a href="#coursemanage" aria-controls="coursemanage" role="tab" data-toggle="tab">课程管理</a></li>
+        </ul>
+          <!-- Tab panes -->
+        <div class="tab-content managetabs">
+            <div role="tabpanel" class="tab-pane active" id="uermanage">
+               <table class="table table-bordered">
+               	<thead>
+               		<tr>
+               			<th>选择</th>
+               			<th>姓名</th>
+               			<th>密码</th>
+               			<th>邮箱</th>
+               			<th>操作</th>
+               		</tr>
+               	</thead>
+               	<tbody>
+               		<tr>
+               			<td><input type="checkbox"></td>
+               			<td>hejianying</td>
+               			<td>12345</td>
+               			<td>1127291246@qq.com</td>
+               			<td>
+               			<a href="" class="glyphicon glyphicon-edit" title="修改"></a>
+               			<a href="" class="glyphicon glyphicon-trash" title="删除"></a>
+
+               		</tr>
+               	</tbody>
+               </table>
+               <a href="" role="button" class="btn btn-primary">删除</a>
+            </div>
+             <div role="tabpanel" class="tab-pane" id="coursemanage">
+                <ul class="nav nav-tabs" role="tablist">
+		            <li role="presentation" class="active"><a href="#auditing" aria-controls="auditing" role="tab" data-toggle="tab">已审核</a></li>
+		            <li role="presentation"><a href="#unauditing" aria-controls="unauditing" role="tab" data-toggle="tab">未审核</a></li>
+		        </ul>
+		        <div class="tab-content unauditingtabs">
+           			<div role="tabpanel" class="tab-pane active" id="auditing">
+           				<table class="table table-bordered">
+           					<thead>
+           						<tr>
+           							<th>序号</th>
+           							<th>课程名</th>
+           							<th>方向</th>
+           							<th>难度</th>
+           							<th>知识点</th>
+           						</tr>
+           					</thead>
+           				</table>
+           				<a href="/[0,1,2,3]" role="button" class="btn btn-primary">修改</a>
+              			<a href="" role="button" class="btn btn-primary">删除</a>
+           			</div>
+           			<div role="tabpanel" class="tab-pane" id="unauditing">
+           				<table class="table table-bordered">
+           					<thead>
+           						<tr>
+           							<th>序号</th>
+           							<th>课程名</th>
+           							<th>方向</th>
+           							<th>难度</th>
+           							<th>知识点</th>
+           						</tr>
+           					</thead>
+           				</table>
+           				<a href="/[0,1,2,3]" role="button" class="btn btn-primary">通过</a>
+               			<a href="" role="button" class="btn btn-primary">不通过</a>
+           			</div>
+           		</div>
+            </div>
+        </div>
+	</div>
+</body>
+</html>

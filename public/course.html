@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>教育资料共享网站</title>
+    <link rel="stylesheet" href="frameworks/bootstrap-3.3.0-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="frameworks/jquery-2.1.4/jquery.js"></script>
+    <script type="text/javascript" src="frameworks/bootstrap-3.3.0-dist/js/bootstrap.js"></script>
+    <!--自定义js-->
+    <script type="text/javascript" src="js/page.js"></script>
+    <script>
+        $(function(){
+            $('.carousel').carousel();
+        })
+    </script>
+</head>
+<body >
+<header class="bgColor">
+    <div class="navbar navbar-danger">
+        <div class="navbar-header">
+            <!-- .navbar-toggle样式用于toggle收缩的内容，即：nav-collapse collapse样式所在的元素 -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">教育资料共享网站</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-responsive-collapse ">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="index.html">主页</a></li>
+                <li><a href="course.html">课程</a></li>
+                <li><a href="web.html">职业路径</a></li>
+                <li><a href="publish.html">发布</a></li>
+                <li><a  data-toggle="modal" data-target="#changeBtn">资料修改</a></li>
+            </ul>
+            <ul class="nav navbar-nav pull-right hidden-xs main">
+                <li class="has-feedback navSearch">
+                    <div class="input-group">
+                        <input type="search" class="form-control input-xs" placeholder="前端开发" >
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="button">
+                                <span class="glyphicon glyphicon-search "></span>
+                            </button>
+                        </span>
+                    </div>
+                </li>
+                <li><a href="login.html">登录</a></li>
+                <li><a href="register.html">注册</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+    <article>
+        <!--条件查找-->
+        <section class="courseSearch">
+            <ul id="first">
+                <li><span class="firstTitle">方向：</span></li>
+                <li><a href="#">全部</a></li>
+                <li  class="active"><a href="#">前端开发</a></li>
+                <li><a href="#">后端开发</a></li>
+                <li><a href="#">移动开发</a></li>
+                <li><a href="#">数据库</a></li>
+                <li><a href="#">运维和测试</a></li>
+            </ul>
+            <ul>
+                <li><span  class="firstTitle">知识点：</span></li>
+                <li><a href="#">全部</a></li>
+                <li  class="active"><a href="#">java</a></li>
+                <li><a href="#">javascript</a></li>
+                <li><a href="#">php</a></li>
+                <li><a href="#">mysql</a></li>
+                <li><a href="#">jquery</a></li>
+            </ul>
+            <ul class="lastUl">
+                <li><span  class="firstTitle"> 难度：</span></li>
+                <li><a href="#">全部</a></li>
+                <li  class="active"><a href="">基础</a></li>
+                <li><a href="#">中等</a></li>
+                <li><a href="#">难</a></li>
+            </ul>
+        </section>
+        <section class="contentBgColor">
+            <div class="bodyContent">
+                <!--公告-->
+                <ul class="Announcement">
+                    <li class="AnnouncementOne"><span>公告</span></li>
+                    <section class="moveOuter">
+                        <div class="move">
+                            <li><a href="">
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                <span>开课了，开课了，最新的javascript开了新课了</span>
+                            </a></li>
+                            <li><a href="">
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                <span>开课了，开课了，最新的javascript开了新课了</span>
+                            </a></li>
+                            <li><a href="">
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                <span>开课了，开课了，最新的javascript开了新课了</span>
+                            </a></li>
+                            <li><a href="">
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                <span>开课了，开课了，最新的javascript开了新课了</span>
+                            </a></li>
+                            <li><a href="">
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                <span>开课了，开课了，最新的javascript开了新课了</span>
+                            </a></li>
+                            <li><a href="">
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                <span>开课了，开课了，最新的javascript开了新课了</span>
+                            </a></li>
+                        </div>
+                    </section>
+                </ul>
+                <!--课程信息显示-->
+                <ul class="btnCourse">
+                    <li>
+                        <a href="">
+                            <span class="btnItemOne pink">css</span>
+                            <h4>html/css基础课程</h4>
+                            <p>html和css基础教程带领大家深入学习标签的用法</p>
+                            <span>基础</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <span class="btnItemOne yellow">css</span>
+                            <h4>html/css基础课程</h4>
+                            <p>html和css基础教程带领大家深入学习标签的用法</p>
+                            <span>基础</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <span class="btnItemOne blue">css</span>
+                            <h4>html/css基础课程</h4>
+                            <p>html和css基础教程带领大家深入学习标签的用法</p>
+                            <span>基础</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <span class="btnItemOne purple">css</span>
+                            <h4>html/css基础课程</h4>
+                            <p>html和css基础教程带领大家深入学习标签的用法</p>
+                            <span>基础</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </section>
+    </article>
+<address class="addressBg">
+    <section class="addressSize">
+        <ul>
+            <li><a href="#">网站首页</a></li>
+            <li><a href="http://www.baidu.com/">百度</a></li>
+            <li><a href="http://www.imooc.com/">慕课网</a></li>
+            <li><a href="http://www.zhaopin.com/">智联招聘</a></li>
+            <li><a href="http://www.jxust.edu.cn/">江理官网</a></li>
+        </ul>
+        <p>copyright&copy;2017 webLearn.com Be want you want be|京ICP备  13223233号</p>
+    </section>
+</address>
+</body>
+</html>

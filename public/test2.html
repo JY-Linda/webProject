@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>文件上传</title>
+	<link rel="stylesheet" href="frameworks/bootstrap-3.3.0-dist/css/bootstrap.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script type="text/javascript" src="frameworks/jquery-2.1.4/jquery.js"></script>
+	<script type="text/javascript" src="frameworks/bootstrap-3.3.0-dist/js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/page.js"></script>
+	<script>
+		
+	</script>
+	<style type="text/css">
+		.outer{
+			overflow: hidden;
+		}
+		.outer>ul,.outer>div{
+			float: left;
+			width: 600px;
+			margin: 10px;
+		}
+		.outer>ul{
+			float: left;
+			width: 100px;
+			border: none;
+		}
+		.outer>ul>li{
+			float: none;
+		}
+		.outer>ul>li.active{
+			border-bottom: 1px solid #ccc;
+		}
+		#test .active{
+			background: red;
+		}
+		#page .active{
+			background: red;
+		}
+		#page{
+			overflow: hidden;
+		}
+		#page>li{
+			float: left;
+			padding: 10px;
+		}
+	</style>
+</head>
+<body>
+<div class="outer">
+	<ul class="nav nav-tabs" role="tablist">
+	    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+	    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+	    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+	    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+  	</ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home">哈哈哈哈哈哈</div>
+    <div role="tabpanel" class="tab-pane" id="profile">啦啦啦</div>
+    <div role="tabpanel" class="tab-pane" id="messages">嘿嘿嘿嘿嘿</div>
+    <div role="tabpanel" class="tab-pane" id="settings">罗罗罗罗罗</div>
+  </div>
+  <ul id="test">
+  	<li hidden>11</li>
+  	<li hidden>22</li>
+  	<li hidden>33</li>
+  	<li hidden>44</li>
+  	<li hidden>55</li>
+  	<li hidden>66</li>
+  	<li hidden>88</li>
+  	<li hidden>99</li>
+  	<li hidden>77</li>
+  </ul>
+  <script type="text/javascript">
+  	$(function(){
+  		
+  		for(var i=0;i<3;i++){
+  			if(i==0){
+  				$("#page").append("<li val="+i+" hidden><a>上一页</a></li>");
+  			}else if(i==1){
+  				$("#page").append("<li class='active' val="+i+"><a>"+i+"</a></li>");
+  			}else{
+  				$("#page").append("<li val="+i+"><a>"+i+"</a></li>");
+  			}
+  			
+  		}
+  		var next = parseInt($("#page").find("li.active").attr("val"));
+  		$("#page").append("<li class='last' val="+(next+1)+"><a>下一页</a></li>");
+  		$("#page li").click(function(){
+  			$("#test li").attr("hidden","hidden");
+  			var Litext = $(this).text();
+  			var page = $(this).attr("val");
+  			// $(this).siblings().removeClass("active");
+  			// $(this).addClass("active");
+  			if(Litext=="下一页"){
+  				var next = parseInt($("#page").find("li.active").attr("val"));
+  				page = next+1;
+  				$(this).siblings().removeClass("active");
+  				$("#page li").eq(next+1).addClass("active");
+  			}else if(Litext=="上一页"){
+  				var next = parseInt($("#page").find("li.active").attr("val"));
+  				page = next-1;
+  				$(this).siblings().removeClass("active");
+  				$("#page li").eq(next-1).addClass("active");
+  			}else{
+  				$(this).siblings().removeClass("active");
+  				$(this).addClass("active");
+  			
+  			}	
+			for(var i=(page-1)*3;i<page*3;i++){
+				$("#test li").eq(i).removeAttr("hidden");
+				if(page>2){
+  					$("#page").find("li.last").attr("hidden","hidden");
+  					$("#page li").eq(0).removeAttr("hidden");
+	  			}else if(page>1){
+	  				$("#page li").eq(0).removeAttr("hidden");
+	  				$("#page").find("li.last").removeAttr("hidden");
+	  			}else{
+	  				$("#page li").eq(0).attr("hidden","hidden");
+	  				$("#page").find("li.last").removeAttr("hidden");
+	  			}
+			}		
+
+  		});
+  		$("#page li").eq(1).trigger("click");
+  		
+  	});
+  </script>
+</div>
+  <ul id="page">
+  	
+  </ul>
+</body>
+</html>

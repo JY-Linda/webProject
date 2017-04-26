@@ -1,0 +1,70 @@
+doctype html
+html
+	head
+		meta(charset="UTF-8")
+		title 教育资料共享网站
+		link(rel="stylesheet",href="/frameworks/bootstrap-3.3.0-dist/css/bootstrap.css")
+		link(rel="stylesheet",href="/css/style.css")
+		script(type="text/javascript",src="/frameworks/jquery-2.1.4/jquery.js")
+		script(type="text/javascript",src="/frameworks/bootstrap-3.3.0-dist/js/bootstrap.js")
+		script(type="text/javascript",src="/js/page.js")
+	body
+		header.bgColor
+			div.nav.navbar-danger
+				div.navbar-header
+					<!-- .navbar-toggle样式用于toggle收缩的内容，即：nav-collapse collapse样式所在的元素 -->
+					button(type="button",class="navbar-toggle",data-toggle="collapse",data-target=".navbar-responsive-collapse")
+						span.sr-only tooggle navigation
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+					a(class="navbar-brand",href="index.html") 教育资料共享网站
+				div.collapse.navbar-collapse.navbar-responsive-collapse
+					-if(stu)
+						span(class="isLogin",val=stu.id)
+						ul.nav.navbar-nav
+							li.active
+								a(href="/toIndex") 主页
+							li
+								a(href="/toCourse/det/0/topics/0/levels/0/dId/0") 课程
+							li
+								a(href="/toWebjob") 职业路径
+							li
+								a(href="/toPublish") 发布
+							li 
+								a(data-toggle="modal",data-target="#changeBtn") 资料修改
+					-else
+						ul.nav.navbar-nav
+							li.active
+								a(href="/toLogin") 主页
+							li
+								a(href="/toLogin") 课程
+							li
+								a(href="toLogin") 职业路径
+							li
+								a(href="/toLogin") 发布
+							li 
+								a(data-toggle="modal",data-target="#changeBtn") 资料修改
+					ul.nav.navbar-nav.pull-right.main
+						li.has-feedback.navSearch
+							div.input-group
+								-if(related)
+									input(type="search",class="form-control input-xs",placeholder="前端开发",value=related)
+								-else
+									input(type="search",class="form-control input-xs",placeholder="前端开发")
+								span.input-group-btn
+									a(class="btn btn-primary",role="button")
+										span.glyphicon.glyphicon-search 
+						-if(stu)
+							li
+								span.col-md-10
+									a(data-toggle="modal",data-target="#changeBtn")
+										img(src=stu.photo,alt="图片找不到了",class="img-circle photoMe",title=stu.username)
+							li
+								a(href="/layout") 退出
+						-else
+							li
+								a(href="/toLogin") 登录
+							li
+								a(href="/toRegister") 注册
+		block content

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>教育资料共享网站</title>
+    <link rel="stylesheet" href="frameworks/bootstrap-3.3.0-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="frameworks/jquery-2.1.4/jquery.js"></script>
+    <script type="text/javascript" src="frameworks/bootstrap-3.3.0-dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/page.js"></script>
+    <!--自定义js-->
+</head>
+<script>
+
+</script>
+<body >
+<header class="bgColor">
+    <div class="navbar navbar-danger">
+        <div class="navbar-header">
+            <!-- .navbar-toggle样式用于toggle收缩的内容，即：nav-collapse collapse样式所在的元素 -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">教育资料共享网站</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-responsive-collapse ">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="index.html">主页</a></li>
+                <li><a href="web.html">课程</a></li>
+                <li><a href="java.html">职业路径</a></li>
+                <li><a href="mysql.html">发布</a></li>
+                <li><a href="php.html">资料修改</a></li>
+            </ul>
+            <ul class="nav navbar-nav pull-right hidden-xs main">
+                <li class="has-feedback navSearch">
+                    <div class="input-group">
+                        <input type="search" class="form-control input-xs" placeholder="前端开发" >
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="button">
+                                <span class="glyphicon glyphicon-search "></span>
+                            </button>
+                        </span>
+                    </div>
+                </li>
+                <li><a href="login.html">登录</a></li>
+                <li><a href="register.html">注册</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+<article>
+    <!--发布页面头部个人信息-->
+    <section>
+        <ul class="publishTitle row">
+            <li class="col-md-2">
+                <img src="images/publish/me.jpg" alt="图片找不到了" class="img-circle me">
+            </li>
+            <li class="meTitle col-md-3">
+                <h1>奋斗的小樱</h1>
+                <p >这个家伙很懒，什么也没留下....</p>
+            </li>
+        </ul>
+    </section>
+    <section class="publishMargin container">
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#publish" aria-controls="publish" role="tab" data-toggle="tab">已发布</a></li>
+            <li role="presentation"><a href="#addPublish" aria-controls="addPublish" role="tab" data-toggle="tab">添加发布</a></li>
+            <li role="presentation"><a href="#notes" aria-controls="notes" role="tab" data-toggle="tab">笔记</a></li>
+        </ul>
+          <!-- Tab panes -->
+        <div class="tab-content tabContent">
+            <div role="tabpanel" class="tab-pane active" id="publish">
+                <div class="publishNav">
+                    <span>最新动态</span>
+                </div>
+               <section class="meTitle row">
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <img class="imgSize" src="images/show/App.jpg" alt="图片找不到了">
+                            <div class="caption">
+                                <p>随着互联网的发展，手机app层出不断，无疑学习手机app的开发会是一大潮流</p>
+                                <p >
+                                    <a  class="btn btn-primary" data-toggle="modal" data-target="#changeKnow">修改</a>
+                                    <a href="#" class="btn btn-primary" role="button">查看</a>
+                                    <a href="#" class="btn btn-primary" role="button">删除</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="addPublish">
+                <div class="publishNav">
+                    <span>快来说出你的故事</span>
+                </div>
+                <p class="addPublishTitle">添加发布</p>
+                <form action="" method="post" class="form-horizontal row addPublishContent">
+                  <div class="col-md-12 col-md-offset-1">
+                      <div class="form-group col-md-4">
+                        <label class="col-md-4 control-label">难度:</label>
+                        <div class="col-md-8">
+                              <select class="form-control" name="levels">
+                                <option value="easy">简单</option>
+                              </select>
+                        </div>
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label class="col-md-4 control-label">方向:</label>
+                        <div class="col-md-8">
+                             <select class="form-control" name="department">
+                                <option value="web">前端开发</option>
+                            </select>
+                        </div> 
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label class="col-md-4 control-label">知识点:</label>
+                        <div class="col-md-8">
+                             <select class="form-control" name="topics">
+                                <option value="HTML">HTML</option>
+                             </select>
+                        </div>
+                      </div>
+                  </div>
+                  
+                  <div class="form-group col-md-12">
+                     <label class="col-md-2 control-label">题目</label>
+                     <div class="col-md-9">
+                        <input type="text" class="form-control"name="title" placeholder="帮你的知识点取个名字吧">
+                     </div>
+                  </div>
+                  <div class="form-group col-md-12">
+                     <label class="col-md-2 control-label">简介</label>
+                     <div class="col-md-9">
+                        <textarea class="form-control"name="descript" rows="3"></textarea>
+                     </div>
+                  </div>
+                  <div class="form-group col-md-12">
+                     <label class="col-md-2 control-label">封面</label>
+                     <div class="col-md-9">
+                        <input type="file" name="showPhoto" id="inputfile">
+                     </div>
+                  </div>
+                   <div class="form-group col-md-12">
+                             <label class="col-md-2 control-label">知识点</label>
+                             <div class="col-md-9">
+                                <span class="btn btn-primary" id="addChapter">添加章节</button>
+                             </div>
+                    </div>
+                    <div class="col-md-12 addChapterOuter">
+                        <div class="addChapter">
+                            <div class="form-group col-md-12 pull-right">
+                             <label class="col-md-2 control-label">章节：</label>
+                             <div class="col-md-8">
+                                <input type="text" name="chapter" class="form-control">
+                             </div>
+                            </div>
+                            <div class="form-group col-md-12 pull-right">
+                             <label class="col-md-2 control-label">内容：</label>
+                             <div class="col-md-8">
+                                <textarea class="form-control"name="content" rows="3"></textarea>
+                             </div>
+                            </div>
+                        </div>
+                       
+                    </div>                 
+                  <div class="form-group">
+                        <div class="col-md-4 pull-right">
+                           <input type="submit" class="btn btn-info" value="发布" >
+                        </div>
+                  </div>
+                </form>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="notes">
+                <div class="publishNav">
+                    <span>好记性不如烂笔头。。</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</article>
+<!--发布内容模态框-->
+<div class="modal fade" id="publish">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">发布内容</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">发布</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--发布内容修改模态框-->
+<div class="modal fade" id="changeKnow">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">修改发布</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">保存</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<address class="addressBg">
+    <section class="addressSize">
+        <ul>
+            <li><a href="#">网站首页</a></li>
+            <li><a href="http://www.baidu.com/">百度</a></li>
+            <li><a href="http://www.imooc.com/">慕课网</a></li>
+            <li><a href="http://www.zhaopin.com/">智联招聘</a></li>
+            <li><a href="http://www.jxust.edu.cn/">江理官网</a></li>
+        </ul>
+        <p>copyright&copy;2017 webLearn.com Be want you want be|京ICP备  13223233号</p>
+    </section>
+</address>
+</body>
+</html>

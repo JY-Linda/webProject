@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>教育资料共享网站</title>
+    <link rel="stylesheet" href="frameworks/bootstrap-3.3.0-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="public/css/style.css">
+    <script type="text/javascript" src="frameworks/jquery-2.1.4/jquery.js"></script>
+    <script type="text/javascript" src="frameworks/bootstrap-3.3.0-dist/js/bootstrap.js"></script>
+    <!--自定义js-->
+</head>
+<script>
+
+</script>
+<body>
+<header class="bgColor">
+    <div class="navbar navbar-danger">
+        <div class="navbar-header">
+            <!-- .navbar-toggle样式用于toggle收缩的内容，即：nav-collapse collapse样式所在的元素 -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">教育资料共享网站</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-responsive-collapse ">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="index.html">主页</a></li>
+                <li><a href="course.html">课程</a></li>
+                <li><a href="web.html">职业路径</a></li>
+                <li><a href="publish.html">发布</a></li>
+                <li><a  data-toggle="modal" data-target="#changeBtn">资料修改</a></li>
+            </ul>
+            <ul class="nav navbar-nav pull-right hidden-xs main">
+                <li class="has-feedback navSearch">
+                    <div class="input-group">
+                        <input type="search" class="form-control input-xs" placeholder="前端开发" >
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="button">
+                                <span class="glyphicon glyphicon-search "></span>
+                            </button>
+                        </span>
+                    </div>
+                </li>
+                <li><a href="login.html">登录</a></li>
+                <li><a href="register.html">注册</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+<article class="content">
+    <section class="container bg">
+        <div class="row">
+            <ul>
+                <li>
+                    <div class="col-md-4 pull-right common">
+                        <form action="/test" method="post" enctype="multipart/form-data" class="form-horizontal ">
+                            <div class="form-group has-feedback">
+                                <label  class="col-md-3 control-label">用户名</label>
+                                <div class="col-md-9">
+                                    <input type="text" name="username" class="form-control" placeholder="请输入注册用户名">
+                                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                                </div>
+                            </div>
+                            <div class="form-group has-feedback">
+                                <label  class="col-md-3 control-label">密码</label>
+                                <div class="col-md-9">
+                                    <input type="password" name="password" class="form-control" placeholder="请输入注册密码">
+                                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                                </div>
+                            </div>
+                            <div class="form-group has-feedback">
+                                <label  class="col-md-3 control-label">性别</label>
+                                <div class="col-md-9 radio">
+                                    <label>
+                                        <input type="radio" name="gender" value="男">
+                                        男
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="gender" value="女">
+                                        女
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="inputfile">头像</label>
+                                <div class="col-md-9">
+                                    <input type="file" name="photo" id="inputfile">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">个人描述</label>
+                                <div class="col-md-9">
+                                    <textarea name="descript"  rows="1" cols="35"  placeholder="请输入你的个人描述"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group has-feedback">
+                                <label class="col-md-3 control-label">邮箱</label>
+                                <div class="col-md-9">
+                                    <input type="text" name="email" class="form-control" placeholder="请输入您的邮箱">
+                                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-4 col-md-8">
+                                    <div class="col-md-4 ">
+                                        <input type="submit" class="btn btn-info" value="注册" >
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="button" class="btn btn-info" value="登录">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+</article>
+</body>
+</html>

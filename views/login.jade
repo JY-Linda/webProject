@@ -1,0 +1,37 @@
+extends 	./header
+block content
+	article.content.LoginColor
+		section.container.bg
+			div.row
+				ul
+					li
+						div(class="col-md-4 pull-right common login")
+							-if(msg)
+								div.alert.alert-danger #{msg}
+							form( action="/login",method="post",class="form-horizontal")
+								div.form-group.has-feedback
+										label.col-md-3.control-label 用户名
+										div.col-md-9
+											input(type="text",name="username",class="form-control",placeholder="请输入注册用户名")
+											span(class="glyphicon glyphicon-user form-control-feedback")
+								div.form-group.has-feedback
+									label.col-md-3.control-label 密码
+									div.col-md-9
+										input(type="password",name="password",class="form-control",placeholder="请输入注册密码")
+										span(class="glyphicon glyphicon-lock form-control-feedback")
+								div.form-group.has-feedback
+									label.col-md-3.control-label 身份
+									div.col-md-9.radio
+										label
+											input(type="radio",name="manage",value=1) 
+											p 管理员
+										&nbsp;&nbsp;
+										label
+											input(type="radio",name="manage",value=0)
+											p 用户
+								div.form-group
+									div.col-sm-offset-4.col-md-8
+										div.col-md-4
+											input(type="submit",class="btn btn-info",value="登录")
+										div.col-md-4
+											a(href="/toRegister",class="btn btn-warning",role="button") 注册

@@ -1,0 +1,63 @@
+<section class="container bg">
+    <div class="row">
+        <ul ng-switch="number">
+            <li ng-switch-when="1">
+                <div class="col-md-4 pull-right common">
+                    <form action="/login" method="post" class="form-horizontal ">
+                        <div class="form-group has-feedback">
+                            <label  class="col-md-3 control-label">用户名</label>
+                            <div class="col-md-9">
+                                <input type="text" name="username" class="form-control" placeholder="请输入注册用户名">
+                                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label  class="col-md-3 control-label">密码</label>
+                            <div class="col-md-9">
+                                <input type="text" name="username" class="form-control" placeholder="请输入注册密码">
+                                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label  class="col-md-3 control-label">性别</label>
+                            <div class="col-md-9 radio">
+                                <label>
+                                    <input type="radio" name="gender" value="男">
+                                    男
+                                </label>
+                                <label>
+                                    <input type="radio" name="gender" value="女">
+                                    女
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="col-md-3 control-label">手机</label>
+                            <div class="col-md-9">
+                                <input type="text" name="telephone" class="form-control" placeholder="请输入您的手机号">
+                                <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="col-md-3 control-label">邮箱</label>
+                            <div class="col-md-9">
+                                <input type="text" name="email" class="form-control" placeholder="请输入您的邮箱">
+                                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-4 col-md-8">
+                                <div class="col-md-4 ">
+                                    <input type="submit" class="btn btn-info" value="注册" >
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="button" class="btn btn-info" value="登录" ng-click="register()">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>

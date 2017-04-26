@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试</title>
+    <script type="text/javascript" src="frameworks/jquery-2.1.4/jquery.js"></script>
+    <script>
+        $(function(){
+            var top =$("ul").innerHeight();
+
+            setInterval(function(){
+                $("ul").animate({
+                    top:-top
+                },4000,function(){
+                    $("ul").css("top",top);
+                });
+                console.log(top);
+            },3000);
+           console.log($("ul").innerHeight());
+
+        });
+    </script>
+    <style>
+        .outer{
+            border: 1px #cccccc solid;
+            padding: 10px;
+            overflow: hidden;
+            height: 300px;
+        }
+        ul{
+            position: relative;
+            overflow: hidden;
+
+        }
+    </style>
+</head>
+<body>
+<div class="outer">
+    <ul>
+        <li><a href="">我是第一个</a></li>
+        <li><a href="">我是第二个</a></li>
+        <li><a href="">我是第三个</a></li>
+        <li><a href="">我是第四个</a></li>
+        <li><a href="">我是第五个</a></li>
+        <li><a href="">我是第六个</a></li>
+        <li><a href="">我是第七个</a></li>
+        <li><a href="">我是第八个</a></li>
+        <li><a href="">我是第九个</a></li>
+        <li><a href="">我是第十个</a></li>
+        <li><a href="">我是第十一个</a></li>
+        <li><a href="">我是第十二个</a></li>
+        <li><a href="">我是第十三个</a></li>
+        <li><a href="">我是第十四个</a></li>
+        <li><a href="">我是第十五个</a></li>
+        <li><a href="">我是第一个</a></li>
+        <li><a href="">我是第二个</a></li>
+        <li><a href="">我是第三个</a></li>
+        <li><a href="">我是第四个</a></li>
+        <li><a href="">我是第五个</a></li><li><a href="">我是第一个</a></li>
+        <li><a href="">我是第二个</a></li>
+        <li><a href="">我是第三个</a></li>
+        <li><a href="">我是第四个</a></li>
+        <li><a href="">我是第五个</a></li>
+    </ul>
+</div>
+
+</body>
+</html>

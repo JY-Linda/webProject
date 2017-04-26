@@ -1,0 +1,64 @@
+extends 	./header
+block content
+	article.content
+		section
+			img(src="../images/web/web.jpg",class="knowledgeBg",alt="图片找不到了",class="img-responsive")
+		section.contentBgColor
+			section
+				section
+					h2.text-center.knowledgeColor 第一关  前端入门篇
+					p(class="text-center knowledgeP center-block knowledgeColor") 作为当今主流的前端开发语言，javascript集简单、免费、高效等荣誉于一身，但是，想学习她还是要脚踏实地地从基础语法开始，当然，对于将来要在Web开发领域叱咤风云的你来说，跟HTML和CSS还有一些不得不说的故事。
+					div(class="row knowledgeSize center-block")
+						-for(var i=0;i<webjob.length;i++){
+						-var departId=webjob[i].level_id;
+						-if((webjob[i].level_id==1)&&(webjob[i].department_id==1))
+							div.col-md-4
+								div.thumbnail
+									a(href="/toDiscuss/a/#{webjob[i].id}")
+										img(class="imgSize",src=webjob[i].showPhoto,alt="图片找不到了")
+									div.caption
+										p.showBlock #{webjob[i].descript}
+										p
+											span.knowledgeColor #{webjob[i].title}					
+						-}
+			img(src="../images/web/beijing.PNG",alt="")
+			section
+				h2.text-center.knowledgeColor 第二关  前端基础应用篇
+				p(class="text-center knowledgeP center-block knowledgeColor") javaScript是一种解释性脚本语言，主要用来向HTML页面添加交互行为。本阶段主要带领大家学习JS的基本语法、流程控制语句、函数、对象、DOM、BOM、事件以及轮播图的案例，实现网页的交互
+				div(class="row knowledgeSize center-block")
+					-for(var i=0;i<webjob.length;i++){
+						-var departId=webjob[i].level_id;
+						-if((webjob[i].level_id==2)&&(webjob[i].department_id==1))
+							div.col-md-4
+								div.thumbnail
+									a(href="/toDiscuss/a/#{webjob[i].id}")
+										img(class="imgSize",src=webjob[i].showPhoto,alt="图片找不到了")
+									div.caption
+										p.showBlock #{webjob[i].descript}
+										p
+											span.knowledgeColor #{webjob[i].title}					
+						-}
+			img(src="../images/web/beijing.PNG",alt="")
+			section
+				h2.text-center.knowledgeColor 第二关  前端进阶练习篇
+				p(class="text-center knowledgeP center-block knowledgeColor") 通过前面步骤的学习，我们学会了网页开发的基础知识，本阶段将由多年开发经验的老师带领你体验企业开发中的流程，从ps切图到最后的网页完成，积累项目开发经验。
+				div(class="row knowledgeSize center-block")
+					-for(var i=0;i<webjob.length;i++){
+						-var departId=webjob[i].level_id;
+						-if((webjob[i].level_id==3)&&(webjob[i].department_id==1))
+							div.col-md-4
+								div.thumbnail
+									a(href="/toDiscuss/a/#{webjob[i].id}")
+										img(class="imgSize",src=webjob[i].showPhoto,alt="图片找不到了")
+									div.caption
+										p.showBlock #{webjob[i].descript}
+										p
+											span.knowledgeColor #{webjob[i].title}					
+						-}
+			img(src="../images/web/beijing.PNG",alt="")
+			img(src="../images/web/beijing2.PNG",alt="",class="center-block")
+				
+
+	-if(stu)
+		include includes/modelChange
+	include includes/address

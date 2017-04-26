@@ -1,0 +1,49 @@
+extends 	./header
+block content
+	article.content
+		section.container.bg
+			div.row
+				ul
+					li
+						div(class="col-md-4 pull-right common login")
+							-if(msg)
+								div.alert.alert-danger #{msg}
+							form(action="/register",method="post",enctype="multipart/form-data",class="form-horizontal")
+								div.form-group.has-feedback
+										label.col-md-3.control-label 用户名
+										div.col-md-9
+											input(type="text",name="username",class="form-control",placeholder="请输入注册用户名",required)
+											span(class="glyphicon glyphicon-user form-control-feedback")
+								div.form-group.has-feedback
+									label.col-md-3.control-label 密码
+									div.col-md-9
+										input(type="password",name="password",class="form-control",placeholder="请输入注册密码",required)
+										span(class="glyphicon glyphicon-lock form-control-feedback")
+								div.form-group.has-feedback
+									label.col-md-3.control-label 性别
+									div.col-md-9.radio
+										label
+											input(type="radio",name="gender",value="男") 
+											p 男
+										label
+											input(type="radio",name="gender",value="女")
+											p 女
+								div.form-group.has-feedback
+									label.col-md-3.control-label 头像
+									div.col-md-9
+										input(type="file",name="photo",id="inputfile",required)
+								div.form-group.has-feedback
+									label.col-md-3.control-label 个人描述
+									div.col-md-9
+										textarea(class="form-control",name="descript",rows="3",placeholder="请输入你的个人描述")
+								div.form-group.has-feedback
+									label.col-md-3.control-label 邮箱
+									div.col-md-9
+										input(type="email",name="email",class="form-control",placeholder="请输入你的邮箱",required)
+										span(class="glyphicon glyphicon-envelope form-control-feedback")
+								div.form-group
+									div.col-sm-offset-4.col-md-8
+										div.col-md-4
+											input(type="submit",class="btn btn-info",value="注册")
+										div.col-md-4
+											a(href="/toLogin",class="btn btn-warning",role="button") 登录

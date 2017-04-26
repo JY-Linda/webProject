@@ -1,0 +1,29 @@
+extends 	./header
+block content
+	article.content
+		section.contentBgColor
+			-if(subjects&&subjects.length>0)
+				div.related 与 "#{related}" 相关结果约 #{subjects.length} 个：
+				section.bodyContent
+					div(class="pageLength",val=subjects.length,pagesize="index")
+					div.row.pageTurning.outer.searchSize
+						-for(var i=0;i<subjects.length;i++){
+						div(class="col-md-3 pageDetails inner")
+							div.thumbnail
+								img(class="imgSize",src=subjects[i].showPhoto,alt="图片找不到了")
+								div.caption
+									h3 #{subjects[i].title}
+									p.showBlock #{subjects[i].descript}
+									p.text-center
+										a(href="/toDiscuss/a/#{subjects[i].id}",class="btn btn-danger",role="button") 开始学习
+						-}
+							
+					ul#pagination
+			-else
+				section.searchSize
+					div.related 没有查找到与 "#{related}" 相关内容去 
+						a(href="/toIndex",class="text-danger") 首页
+						span   看看
+	-if(stu)
+		include includes/modelChange
+	include includes/address

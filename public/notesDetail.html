@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>教育资料共享网站</title>
+	<link rel="stylesheet" href="frameworks/bootstrap-3.3.0-dist/css/bootstrap.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script type="text/javascript" src="frameworks/jquery-2.1.4/jquery.js"></script>
+	<script type="text/javascript" src="frameworks/bootstrap-3.3.0-dist/js/bootstrap.js"></script>
+    <!--自定义js-->
+	<script type="text/javascript" src="js/page.js"></script>
+	<script>
+		$(function(){
+			$('.carousel').carousel();
+		})
+	</script>
+</head>
+<body >
+<header class="bgColor">
+	<div class="navbar navbar-danger">
+		<div class="navbar-header">
+			<!-- .navbar-toggle样式用于toggle收缩的内容，即：nav-collapse collapse样式所在的元素 -->
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="index.html">教育资料共享网站</a>
+		</div>
+		<div class="collapse navbar-collapse navbar-responsive-collapse ">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="index.html">主页</a></li>
+				<li><a href="course.html">课程</a></li>
+				<li><a href="web.html">职业路径</a></li>
+				<li><a href="publish.html">发布</a></li>
+				<li><a  data-toggle="modal" data-target="#changeBtn">资料修改</a></li>
+			</ul>
+			<ul class="nav navbar-nav pull-right hidden-xs main">
+                <li class="has-feedback navSearch">
+                    <div class="input-group">
+                        <input type="search" class="form-control input-xs" placeholder="前端开发" >
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="button">
+                                <span class="glyphicon glyphicon-search "></span>
+                            </button>
+                        </span>
+                    </div>
+                </li>
+				<li><a href="login.html">登录</a></li>
+				<li><a href="register.html">注册</a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+<article class="detailsContent">
+	<section class="detail">
+		<h1>html 基础</h1>
+		<section>
+			<p>“细节”是“神味”说诗学理论的核心理论要素之一。“神味”说理论是旨在突破、超越中国传统文艺旧审美理想“意境”的新审美理想理论体系，“细节”是区别这两种新旧审美理想的最小基本单位，即“意境”主要由“意象”（“情景”）为最小最基本的单位所构建，而“神味”则主要由“细节”这一最小最基本的单位所构建。这种区别背后是两种审美理想的根本思维方式的差异，区别于“意境”建构的“以有限追求无限”的方式，“神味”则主要以“将有限（或局部）最佳化”的方式为根本特征，而“细节”即“将有限（或局部）最佳化”的思维方式的最佳体现和寄托，正因为如此，以“细节”为表现载体的“神味”不可重复，而以“意象”为表现载体的“意境”在古代诗歌中存在大量重复，造成了难以克服的陈词滥调现象，也造成了中国诗歌在唐诗之后即每况愈下的发展历史。二十世纪以后，中国现当代文学（含诗歌）不再以“意境”为最高的审美理想追求，乃是“神味”说理论建构的现实基础。</p>
+		</section>
+	</section>
+	<section class="meLabel">
+		 <p>
+		 	<a href="">
+		 		<img src="images/publish/me.jpg" alt="图片找不到了" class="img-circle meLabelImg">
+		 	</a>
+		 </p>
+		 <h3>奋斗的小樱</h3>
+		 <div class="labelP">造成了难以克服的陈词滥调现象，也造成了中国诗歌在唐诗之后即</div>
+		 <p><a href="">1篇日记</a>
+		 	<span>&nbsp;&nbsp;</span>
+		 <a href="">1篇发布</a>
+		 </p>
+	</section>
+</article>
+<!--底部版权信息-->
+<address class="addressBg">
+	<section class="addressSize">
+		<ul>
+			<li><a href="#">网站首页</a></li>
+			<li><a href="http://www.baidu.com/">百度</a></li>
+			<li><a href="http://www.imooc.com/">慕课网</a></li>
+			<li><a href="http://www.zhaopin.com/">智联招聘</a></li>
+			<li><a href="http://www.jxust.edu.cn/">江理官网</a></li>
+		</ul>
+		<p>copyright&copy;2017 webLearn.com Be want you want be|京ICP备  13223233号</p>
+	</section>
+</address>
+</body>
+</html>

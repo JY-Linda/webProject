@@ -1,0 +1,69 @@
+extends 	./header
+block content
+	article.content
+		section.publishTitle.discussTitle
+			h1 #{content[0].title}
+			p 难度级别：
+				span #{content[0].relName}
+		section.bodyContent
+			p.discussdes
+				span.jianjie
+					span.spanSize 简 介:
+					span &nbsp;#{content[0].descript}
+				span.pull-right.upload
+					span.download 资料下载
+					span
+						span.glyphicon.glyphicon-folder-close
+						span.dataName #{content[0].dataTitle}
+						-var path=content[0].dataUrl
+						a(class="pull-right glyphicon glyphicon-download-alt",href="/download/pathId/#{content.sub_id}") 
+			ul(class="nav nav-tabs",role="tablist")
+				li(role="presentation",class="active")
+					a(href="#tab1",data-toggle="tab",aria-controls="home",role="tab") 章节
+				li(role="presentation")
+					a(href="#tab2",aria-controls="home",role="tab",data-toggle="tab") 全部评价
+				li(role="presentation")
+					a(href="#tab3",data-toggle="tab",aria-controls="home",role="tab") 添加评价
+			div.tab-content.discussMargin
+				div(class="tab-pane active",id="tab1")
+					div(class="panel-group",id="accordion",role="tablist",aria-multiselectable="true")
+						-for(var i=0;i<content.length;i++){
+						div.panel.panel-default
+							div(class="panel-heading",role="tab",id="head#{content[i].id}")
+								h4.panel-title
+									a(role="button",data-toggle="collapse",data-parent="#accordion",href="##{content[i].id}" aria-expanded="true",aria-controls=content[i].id)
+										span.glyphicon.glyphicon-star
+										span &nbsp;&nbsp;
+										span 第#{i+1}章  &nbsp;#{content[i].chapter}
+										span(class="glyphicon glyphicon-chevron-down pull-right")
+							div(id=content[i].id,class=i==0?"panel-collapse collapse in":"panel-collapse collapse",role="tabpanel",aria-labelledby="head#{content[i].id}")
+								div.panel-body 
+									a(href="/toDetails/notes/#{content.sub_id}/dist/1/active/#{i+1}",class="contentA") 
+										pre #{content[i].content}
+						-}
+				div(class="tab-pane",id="tab2") 
+					div(class="pageLength",val=discuss.length,pagesize="discuss")
+					ul.outer
+						-if(discuss&&discuss.length>0)
+							-for(var i=discuss.length-1;i>=0;i--){
+							li.discussImg.inner
+								div
+									img(src=discuss[i].photo,alt="啊啊啊，你的头像呢",class="img-circle photoMe")  
+								div.pingjia
+									h4 #{discuss[i].username}
+									p #{discuss[i].discuss}
+							-}
+						-else
+							p.kongP 还没有人评价该知识点呢，快来抢沙发。。。
+					-if(discuss&&discuss.length>0)
+						ul#pagination
+				div(class="tab-pane",id="tab3")
+					div.addDiscuss
+						h4 快来说说你的心得体会......
+						form(action="/addDiscuss",method="post")
+							textarea(cols="100",rows="10",name="discuss")
+							br
+							input(class="btn btn-primary pull-right",type="submit",value="评价",role="button")               
+	-if(stu)
+		include includes/modelChange
+	include includes/address

@@ -1,0 +1,56 @@
+div.modal.fade#changeBtn
+	div(class="modal-dialog",role="document")
+		div.modal-content
+			div.modal-header
+				button(type="button",class="close",data-dismiss="modal",aria-label="Close")
+					span(aria-hidden="true") &times;
+				h4.modal-title 个人信息
+			div.modal-body
+				div.row
+					ul
+						li
+							div.col-md-10.center-block
+								form(action="/changeData",id="oneFrom",method="post",class="form-horizontal",enctype="multipart/form-data")
+									div.form-group.has-feedback
+										label.col-md-3.control-label 用户名
+										div.col-md-9
+											input(type="text",name="username",class="form-control",value=stu.username)
+											span(class="glyphicon glyphicon-user form-control-feedback")
+									div.form-group.has-feedback
+										label.col-md-3.control-label 密码
+										div.col-md-9
+											input(type="password",name="password",class="form-control",value=stu.password)
+											span(class="glyphicon glyphicon-lock form-control-feedback")
+									div.form-group.has-feedback
+										label.col-md-3.control-label 性别
+										div.col-md-9.radio
+											-if(stu.gender=="女")
+												label
+													input(type="radio",name="gender",value="男") 
+													p 男
+												label
+													input(type="radio",name="gender",value="女",checked)
+													p 女
+											-else
+												label
+													input(type="radio",name="gender",value="男",checked) 
+													p 男
+												label
+													input(type="radio",name="gender",value="女",checked)
+													p 女
+									div.form-group.has-feedback
+										label.col-md-3.control-label 头像
+										div.col-md-9
+											input(type="file",id="inputfile",name="photo",required)
+									div.form-group.has-feedback
+										label.col-md-3.control-label 个人描述
+										div.col-md-9
+											textarea(rows="3",class="form-control",name="descript") #{stu.descript}
+									div.form-group.has-feedback
+										label.col-md-3.control-label 邮箱
+										div.col-md-9
+											input(type="email",name="email",class="form-control",value=stu.email)
+											span(class="glyphicon glyphicon-envelope form-control-feedback")
+			div.modal-footer
+				input(type="submit",class="btn btn-primary",form="oneFrom",role="button",value="保存")
+				button(type="button",class="btn btn-default",data-dismiss="modal") 关闭

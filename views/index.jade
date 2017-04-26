@@ -1,0 +1,58 @@
+extends 	./header
+block content
+	article.content
+		<!--图片轮播-->
+		section
+			div(id="carousel-example-generic",class="carousel slide cricle",data-ride="carousel")
+				ol.carousel-indicators
+					li(data-target="#carousel-example-generic",data-slide-to="0",class="active")
+					li(data-target="#carousel-example-generic",data-slide-to="1")
+					li(data-target="#carousel-example-generic",data-slide-to="2")
+					li(data-target="#carousel-example-generic",data-slide-to="3")
+				div(class="carousel-inner",role="listbox")
+					div.item.active
+						a(class="noblack",href="/toDiscuss/a/9")
+							img(src="/images/index1/js.png",alt="javascript")
+						div.carousel-caption
+					div.item
+						a(class="noblack",href="/toDiscuss/a/2")
+							img(src="/images/index1/java.png",alt="java")
+						div.carousel-caption
+					div.item
+						a(class="noblack",href="/toDiscuss/a/13")
+							img(src="/images/index1/php.png",alt="java")
+						div.carousel-caption
+					div.item
+						a(class="noblack",href="/toDiscuss/a/14")
+							img(src="/images/index1/sql.png",alt="java")
+						div.carousel-caption
+				a(class="left carousel-control",href="#carousel-example-generic",role="button",data-slide="prev")
+					span(class="glyphicon glyphicon-chevron-left",aria-hidden="true")
+					span.sr-only Previous
+				a(class="right carousel-control",href="#carousel-example-generic",role="button",data-slide="next")
+					span(class="glyphicon glyphicon-chevron-right",aria-hidden="true")
+					span.sr-only Next
+		section.contentBgColor
+			section.bodyContent
+				div(class="pageLength",val=subjects.length,pagesize="index")
+				div(class="collapse navbar-collapse navbar-responsive-collapse")
+					ul.nav.navbar-nav
+						li
+							a(href="login.html",class="text-danger") 最热
+				div.row.pageTurning.outer
+					-for(var i=0;i<subjects.length;i++){
+					-if(subjects[i].reviewed=="通过")
+						div(class="col-md-3 pageDetails inner")
+							div.thumbnail
+								img(class="imgSize",src=subjects[i].showPhoto,alt="图片找不到了")
+								div.caption
+									h3.subtitle #{subjects[i].title}
+									p.showBlock #{subjects[i].descript}
+									p.text-center
+										a(href="/toDiscuss/a/#{subjects[i].id}",class="btn btn-danger",role="button") 开始学习
+					-}
+						
+				ul#pagination
+	-if(stu)
+		include includes/modelChange
+	include includes/address

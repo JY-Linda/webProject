@@ -1,0 +1,170 @@
+extends 	./header
+block content
+	article.content
+		section
+			ul.publishTitle.row
+				li.col-md-2
+					img(src=stu.photo,alt="图片找不到了",class="img-circle me")
+				li.meTitle.col-md-3
+					h1 #{stu.username}
+					p #{stu.descript}
+		section.container.publishMargin
+			ul(class="nav nav-tabs",role="tablist")
+				li(role="presentation",class="active")
+					a(href="#publish",aria-controls="publish",role="tab",data-toggle="tab") 已发布
+				li(role="presentation")
+					a(href="#addPublish",aria-controls="addPublish",role="tab",data-toggle="tab") 添加发布
+				li(role="presentation") 
+					a(href="#notes",aria-controls="notes",role="tab",data-toggle="tab") 笔记
+			div.tab-content.tabContent
+				div(role="tabpanel",class="tab-pane active",id="publish")
+					div.publishNav
+						span 最新动态
+					section.meTitle.row.outer
+						div(class="pageLength",val=mySubjects.length,pagesize="public")
+						-if(mySubjects&&mySubjects.length>0)
+							-for(var i=mySubjects.length-1;i>=0;i--){
+							div.col-md-4.inner
+								div.thumbnail
+									img(class="imgSize",src=mySubjects[i].showPhoto,alt="图片找不到了")
+									div.caption
+										p.showBlock #{mySubjects[i].descript}
+										p
+											a(class="btn btn-primary",href="/changePublish/changeId/#{mySubjects[i].id}/manage/No") 编辑
+											a(href="/toDiscuss/a/#{mySubjects[i].id}",class="btn btn-primary",role="button") 查看
+											a(href="/delsubject/d/ #{mySubjects[i].id}/manage/No",class="btn btn-primary",role="button") 删除
+											-if(mySubjects[i].reviewed)
+												span(class="checked") #{mySubjects[i].reviewed}
+											-else
+												span(class="checked") 待审核
+							-}
+						-else
+							p.kongP 空空如也，快来发布你的小知识。。
+					-if(mySubjects&&mySubjects.length>0)
+						ul#pagination
+				div(role="tabpanel",class="tab-pane",id="addPublish")
+					div.publishNav
+						span 快来说出你的故事
+					p.addPublishTitle 添加发布
+					form(action="/addPublish/isAdd/Yes/changesubId/1",method="post",enctype="multipart/form-data",class="form-horizontal row addPublishContent",onsubmit="return checkTask(this)")
+						div(class="col-md-12 col-md-offset-1 moveLeft")
+							div.form-group.col-md-4
+								label.col-md-4.control-label 难度
+								div.col-md-8
+									select(class="form-control",name="level_id")
+										-for(var i=0;i < levels.length;i++){
+										option(value=levels[i].id) #{levels[i].relName}
+										-}
+							div.form-group.col-md-4
+								label.col-md-4.control-label 方向
+								div.col-md-8
+									select(class="form-control",name="department_id")
+										-for(var i=0;i < department.length;i++){
+										option(value=department[i].id) #{department[i].relName}
+										-}
+							div.form-group.col-md-4
+								label.col-md-5.control-label 知识点
+								div.col-md-7
+									select(class="form-control",name="topics_id")
+										-for(var i=0;i < topics.length;i++){
+										option(value=topics[i].id,val=topics[i].d_id,hidden="hidden") #{topics[i].name}
+										-}
+						div.form-group.col-md-12
+							label.col-md-2.control-label 标题
+							div.col-md-9
+								input(type="text",class="form-control",name="title",placeholder="",required)
+						div.form-group.col-md-12
+							label.col-md-2.control-label 简介
+							div.col-md-9
+								textarea(class="form-control",name="descript",rows="3",required)
+						div.form-group.col-md-12
+							div.col-md-5.offsetLittle
+								label(class=" col-md-4 control-label",for="inputfile") 封面
+								div.col-md-8
+									input(type="file",id="inputfile",name="photo",required)
+							div.col-md-6
+									label(class="col-md-4 control-label",for="inputfileData") 上传资料
+									div.col-md-8
+										input(type="file",id="inputfileData",name="courseData",required)
+						div.form-group.col-md-12
+							label.col-md-2.control-label 知识点
+							div.col-md-9
+								span(class="btn btn-primary",id="addChapter") 添加章节
+						div.col-md-12.addChapterOuter
+							div.addChapter
+								div(class="form-group col-md-12 pull-right")
+									label.col-md-2.control-label 章节
+									div.col-md-8
+										input(type="text",name="chapter",class="form-control",required)
+								div(class="form-group col-md-12 pull-right")
+									label.col-md-2.control-label 内容
+									div.col-md-8
+										textarea(class="form-control",name="content",rows="15",required) 
+						div.form-group
+							div.col-md-4.pull-right
+								input(type="submit",class="btn btn-info",value="发布")
+
+				div(role="tabpanel",class="tab-pane outer2",id="notes")
+					div.publishNav
+						span 最新动态
+						a(class="btn btn-danger pull-right",href="",role="button",data-toggle="modal",data-target="#addNotes") 添加笔记
+					-if(notes&&notes.length>0)
+						div(class="pageLength2",val=notes.length,pagesize="public")
+						-var j=notes.length+1;
+						-for(var i=notes.length-1;i>=0;i--){	
+						-j--;
+						section.notesDetail.inner2 
+							h4 
+								a(href="/toDetails/notes/#{userId}/dist/0/active/#{j}") #{notes[i].notesTitle}
+							div
+								p 
+									a(href="/toDetails/notes/#{userId}/dist/0/active/#{j}")
+										img(class="notesSize",src=notes[i].notesPhoto,alt="图片找不到了")
+								p
+									p.details #{notes[i].notesDescript}
+									a(href="/notesDetele/id/#{notes[i].id}",class="pull-right nodeDetele") 删除
+						-}
+						ul#pagination2
+					-else
+						p.kongP 空空如也，好记性不如烂笔头，快快动动你的手写下来吧。。。
+
+	div.modal.fade#addNotes
+		div(class="modal-dialog",role="document")
+			div.modal-content
+				div.modal-header
+					button(type="button",class="close",data-dismiss="modal",aria-label="Close")
+						span(aria-hidden="true") &times;
+					h4.modal-title 添加笔记
+				div.modal-body
+					form( action="/addNotes",method="post",class="form-horizontal",enctype="multipart/form-data",id="addNoteFrom")
+								div.form-group.has-feedback
+										label.col-md-3.control-label 标题
+										div.col-md-9
+											input(type="text",name="notesTitle",class="form-control",placeholder="请在此输入标题")
+								div.form-group.has-feedback
+										label.col-md-3.control-label 上传图片
+										div.col-md-9
+											input(type="file",name="photo",id="inputfile")
+										
+								div.form-group.has-feedback
+									label.col-md-3.control-label 内容
+									div.col-md-9
+										textarea(class="form-control",name="notesDescript",rows="4")
+				div.modal-footer
+					input(type="submit",class="btn btn-primary",form="addNoteFrom",role="button",value="保存")
+					button(type="button",class="btn btn-default",data-dismiss="modal") 关闭
+	div.modal.fade#changeKnow
+		div(class="modal-dialog",role="document")
+			div.modal-content
+				div.modal-header
+					button(type="button",class="close",data-dismiss="modal",aria-label="Close")
+						span(aria-hidden="true") &times;
+					h4.modal-title 修改发布
+				div.modal-body
+					p One fine body&hellip;
+				div.modal-footer
+					button(type="button",class="btn btn-primary") 保存
+					button(type="button",class="btn btn-default",data-dismiss="modal") 关闭
+	-if(stu)
+		include includes/modelChange
+	include includes/address

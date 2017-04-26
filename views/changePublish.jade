@@ -1,0 +1,72 @@
+extends 	./header
+block content
+	article.changePublish#addPublish
+		p.addPublishTitle 修改发布
+		form(action="/addPublish/isAdd/No/changesubId/#{changeSubjects[0].id}",method="post",enctype="multipart/form-data",class="form-horizontal row addPublishContent")
+			div(class="col-md-12 col-md-offset-1 moveLeft")
+				div.form-group.col-md-4
+					label.col-md-4.control-label 难度&nbsp
+					div.col-md-8
+						select(class="form-control",name="level_id")
+							-for(var i=0;i < levels.length;i++){
+							-if(i==changeSubjects[0].level_id-1)
+								option(value=levels[i].id,selected) #{levels[i].relName}
+							-else
+								option(value=levels[i].id) #{levels[i].relName}
+							-}
+				div.form-group.col-md-4
+					label.col-md-4.control-label 方向
+					div.col-md-8
+						select(class="form-control",name="department_id")
+							-for(var i=0;i < department.length;i++){
+							-if(i==changeSubjects[0].department_id-1)
+								option(value=department[i].id,selected) #{department[i].relName}
+							-else
+								option(value=department[i].id) #{department[i].relName}
+							-}
+				div.form-group.col-md-4
+					label.col-md-5.control-label 知识点 
+					div.col-md-7
+						div(dId=changeSubjects[0].topics_id,class="findSelected")
+						select(class="form-control",name="topics_id")
+							-for(var i=0;i < topics.length;i++){
+							-if(i==changeSubjects[0].topics_id-1)
+								option(value=topics[i].id,val=topics[i].d_id,test=topics[i].name) #{topics[i].name}
+							-else
+								option(value=topics[i].id,val=topics[i].d_id,hidden) #{topics[i].name}
+							-}
+			div.form-group.col-md-12
+				label.col-md-2.control-label 标题
+				div.col-md-9
+					input(type="text",class="form-control",name="title",value=changeSubjects[0].title)
+			div.form-group.col-md-12
+				label.col-md-2.control-label 简介
+				div.col-md-9
+					textarea(class="form-control",name="descript",rows="5") #{changeSubjects[0].descript}
+			div.form-group.col-md-12
+				label.col-md-2.control-label 封面
+				div.col-md-9
+					input(type="file",name="photo",id="inputfile",required)
+			div.form-group.col-md-12
+				label.col-md-2.control-label 知识点
+				div.col-md-9
+					span(class="btn btn-primary",id="addChapter") 添加章节
+			div.col-md-12.addChapterOuter
+				-for(var i=0;i<changeContent.length;i++){
+				div.addChapter
+					div(class="form-group col-md-12 pull-right")
+						label.col-md-2.control-label 章节
+						div.col-md-8
+							input(type="text",name="chapter",class="form-control",value="#{changeContent[i].chapter}")
+					div(class="form-group col-md-12 pull-right")
+						label.col-md-2.control-label 内容
+						div.col-md-8
+							textarea(class="form-control",name="content",rows="5") #{changeContent[i].content}
+				-}
+			div.form-group
+				div.col-md-4.pull-right
+					input(type="submit",class="btn btn-info",value="修改发布")
+
+	-if(stu)
+		include includes/modelChange
+	include includes/address

@@ -1,0 +1,40 @@
+extends 	./header
+block content
+	article.detailsContent
+		div(hidden,size=notesDetail.length,id="notesSize",active = notesDetail.active,dist=notesDetail.notes)
+		-for(var i=0;i<notesDetail.length;i++){
+		-if(notesDetail.active==i+1)
+			section(class="detail",val=i+1)
+				-if(notesDetail.notes==0)
+					h1 #{notesDetail[i].chapter}
+						a(href="/toPublish",class="pull-right") 返 回 
+				-else
+					h1 第#{notesDetail.active}章 #{notesDetail[i].chapter}
+						a(href="/toDiscuss/a/#{notesDetail.notes}",class="pull-right") 返 回
+				section
+					pre #{notesDetail[i].content}
+		-else
+			section(class='detail',hidden,val=i+1)
+				-if(notesDetail.notes==0)
+					h1 #{notesDetail[i].chapter}
+						a(href="/toPublish",class="pull-right") 返 回 
+				-else
+					h1 第#{i+1}章 #{notesDetail[i].chapter}
+						a(href="/toDiscuss/a/#{notesDetail.notes}",class="pull-right") 返 回
+				section
+					pre #{notesDetail[i].content}
+		-}
+		section.meLabel
+			p
+				a(href="")
+					img(src=stu.photo,alt="图片找不到了",class="img-circle meLabelImg")
+			h3 #{stu.username}
+			div.labelP #{stu.descript}
+			p
+				a(href="/toPublish") 我的发布
+				span &nbsp;&nbsp;
+				a(href="/toPublish" class="notesClick") 我的笔记
+	ul.chapterPage
+	-if(stu)
+		include includes/modelChange
+	include includes/address

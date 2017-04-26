@@ -1,0 +1,122 @@
+doctype html
+html
+	head
+		meta(charset="UTF-8")
+		title 教育资料共享后台管理
+		link(rel="stylesheet",href="/frameworks/bootstrap-3.3.0-dist/css/bootstrap.css")
+		link(rel="stylesheet",href="/css/style.css")
+		script(type="text/javascript",src="/frameworks/jquery-2.1.4/jquery.js")
+		script(type="text/javascript",src="/frameworks/bootstrap-3.3.0-dist/js/bootstrap.js")
+		script(type="text/javascript",src="/js/page.js")
+	body
+		div.manageHeader
+			i
+			div.pull-right
+				span 您好，管理员
+				a(href="/layout") 退出
+		div.publishMargin.manageContent
+			ul(class="nav nav-tabs",role="tablist")
+				li(role="presentation",class="active")
+					a(href="#uermanage",aria-controls="uermanage",role="tab",data-toggle="tab") 用户管理
+				li(role="presentation")
+					a( href="#coursemanage",aria-controls="coursemanage",role="tab",data-toggle="tab") 课程管理
+				li(role="presentation")
+					a( href="#discuss",aria-controls="discuss",role="tab",data-toggle="tab") 评论管理
+			div.tab-content.managetabs
+				div(role="tabpanel",class="tab-pane active",id="uermanage")
+					table.table.table-bordered
+						thead
+							tr
+								th 序号
+								th 姓名
+								th 密码
+								th 邮箱
+								th 操作
+						tbody
+							-for(var i=0;i<users.length;i++){
+							tr
+								td #{i+1}
+								td #{users[i].username}
+								td #{users[i].password}
+								td #{users[i].email}
+								td 
+									a(href="/usermanageChange/id/#{users[i].id}", class="glyphicon glyphicon-edit",title="修改")
+									&nbsp;&nbsp;
+									a(href="/usermanageDelete/id/#{users[i].id}",class="glyphicon glyphicon-trash",title="删除")
+							-}
+				div(role="tabpanel",class="tab-pane",id="coursemanage")
+					ul(class="nav nav-tabs",role="tablist")
+						li(role="presentation",class="active")
+							a(href="#auditing",aria-controls="auditing",role="tab",data-toggle="tab") 已审核
+						li(role="presentation")
+							a(href="#unauditing",aria-controls="unauditing",role="tab",data-toggle="tab") 未审核
+					div.tab-content.unauditingtabs
+						div(role="tabpanel",class="tab-pane active",id="auditing")
+							table.table.table-bordered
+								thead
+									tr
+										th 序号
+										th 课程名
+										th 方向名
+										th 难度
+										th 知识点
+										th 资料名
+										th 操作
+								tbody
+									-for(var i=0;i<subjects.length;i++){
+									-if(subjects[i].reviewed=="通过")
+										tr
+											td #{i+1}
+											td #{subjects[i].title}
+											td #{subjects[i].relName}
+											td #{subjects[i].lelName}
+											td #{subjects[i].name}
+											td #{subjects[i].dataTitle}
+											td 
+												a(href="/changePublish/changeId/#{subjects[i].id}/manage/Yes", class="glyphicon glyphicon-edit",title="修改")
+												&nbsp;&nbsp;
+												a(href="/delsubject/d/#{subjects[i].id}/manage/Yes",class="glyphicon glyphicon-trash",title="删除")
+									-}
+						div(role="tabpanel",class="tab-pane",id="unauditing")
+							table.table.table-bordered
+								thead
+									tr
+										th 选择
+										th 课程名
+										th 方向名
+										th 难度
+										th 知识点
+										th 发布人
+								tbody#subchecked
+									-for(var i=0;i<subjects.length;i++){
+									-if(subjects[i].reviewed !="通过")
+										tr
+											td 
+												input(type="checkbox",val=subjects[i].id)
+											td #{subjects[i].title}
+											td #{subjects[i].relName}
+											td #{subjects[i].lelName}
+											td #{subjects[i].name}
+											td #{subjects[i].username}
+									-}
+							button(role="button",class="btn btn-primary") 通过
+							&nbsp;&nbsp;
+							button(role="button",class="btn btn-primary") 不通过		
+				div(role="tabpanel",class="tab-pane",id="discuss")
+					table.table.table-bordered
+						thead
+							tr
+								th 选择
+								th 发表用户
+								th 所属课程
+								th 评价内容
+						tbody#discussPage
+							-for(var i=0;i<discusss.length;i++){
+							tr
+								td 
+									input(type="checkbox",val=discusss[i].id)
+								td #{discusss[i].username}
+								td #{discusss[i].title}
+								td #{discusss[i].discuss}
+							-}
+					button(role="button",class="btn btn-primary") 删除			
