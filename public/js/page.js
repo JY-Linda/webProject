@@ -149,7 +149,7 @@ $(function() {
                 }
                 //当点击的页数不是最后一页时
                 if(page!=size){
-                    console.log($(".chapterPage button").eq(size+1));
+                    // console.log($(".chapterPage button").eq(size+1));
                     $(".chapterPage button").eq(size+1).removeAttr("disabled");
                     $(".chapterPage button").eq(size+1).find("a").removeClass("unable");
                 }else{
@@ -177,6 +177,12 @@ $(function() {
                 var pageContent =  $(".detailsContent").find(".detail[val="+page+"]");
                 pageContent.siblings(".detail").attr("hidden","hidden");
                 pageContent.removeAttr("hidden");
+                //改变页面高度
+                 $(".detailsContent").removeClass("largedetailsContent");
+                 var detailsHeight = parseInt($(".detailsContent").css("height"));
+                 if(!(detailsHeight>430)){
+                    $(".detailsContent").addClass("largedetailsContent");
+                 }
             });
         }
         
@@ -270,5 +276,10 @@ $(function() {
  audit($("#unauditing button").eq(1),$("#subchecked"),"no");
  //评论删除请求
  audit($("#discuss button").eq(0),$("#discussPage"),"discuss");
+ var detailsHeight = parseInt($(".detailsContent").css("height"));
+ if(!(detailsHeight>430)){
+    console.log("height",detailsHeight);
+    $(".detailsContent").addClass("largedetailsContent");
+ }
 });
 

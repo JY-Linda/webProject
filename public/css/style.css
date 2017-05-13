@@ -379,6 +379,9 @@ a:hover,a:focus{
 .detailsContent{
     overflow: hidden;
 }
+.largedetailsContent{
+    height: 430px;
+}
 .detail{
     width: 800px;
     /*height: 500px;*/

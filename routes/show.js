@@ -11,6 +11,7 @@ var showRouter = express.Router();
 var app = express();
 
 //中间件
+
 showRouter.use("/",function(req,res,next){
 	//获取所有方向信息
 	getDataUtil.getAllDepartment(req,res);
@@ -41,7 +42,8 @@ showRouter.get("/toPublish",function(req,res){
 		dbUtil.excute(sql,[req.session.stu.id],function(result1){
 			var sql = "select * from tbl_notes where u_id=?";
 			dbUtil.excute(sql,[req.session.stu.id],function(result2){
-				res.render("publish",{"mySubjects":result1,"notes":result2,"userId":req.session.stu.id});
+				res.render("publish",{"mySubjects":result1,"notes":result2,
+					"userId":req.session.stu.id});
 			});
 		});
 	//res.render("publish");
@@ -51,8 +53,6 @@ showRouter.get("/toPublish",function(req,res){
 showRouter.post("/addPublish/isAdd/:isAdd/changesubId/:changesubId",function(req,res){
 	req.session.lastSubjectId++;//获取当前增加元素的id
 	var subjectsId = req.session.lastSubjectId;
-	console.log("last:",req.session.lastSubjectId);
-	console.log("id:",subjectsId);
 	//获取发布内容
 	upload(req,res,function(params,dataUrl,photoUrl){
 		var chapters = params.chapter;
@@ -69,6 +69,7 @@ showRouter.post("/addPublish/isAdd/:isAdd/changesubId/:changesubId",function(req
 		//把发布内容插入tbl_subjects表中
 		if(req.params.isAdd=="Yes"){
 			params.id = subjectsId;
+			params.dataTitle = params.title+"资料";
 			console.log("params:",params.id);
 			//保存发布信息
 			var sql = "insert into tbl_subjects set ?";
@@ -102,53 +103,6 @@ showRouter.post("/addPublish/isAdd/:isAdd/changesubId/:changesubId",function(req
 			});
 		}
 	});
-	// //获取发布内容
-	//   fromGetData(req,res,function(params,url){
-	// 	console.log("params",params);
-	// 	url = url.slice(6);
-	// 	var chapters = params.chapter;
-	// 	var contents = params.content;
-	// 	delete params.chapter;//删除章节，章节是内容表当中的内容，不应该插入到课程表当中
-	// 	delete params.content;//删除内容，内容是内容表当中的内容，不应该插入到课程表当中
-	// 	params.showPhoto = url;//把封面相片存储在params中
-	// 	params.u_id = req.session.stu.id;//把用户id(外键)储存在params中
-	// 	//把发布内容插入tbl_subjects表中
-	// 	if(req.params.isAdd=="Yes"){
-	// 		params.id = subjectsId;
-	// 		//保存发布信息
-	// 		var sql = "insert into tbl_subjects set ?";
-	// 		dbUtil.excute(sql,params,function(result){
-	// 			//把该发布的所有章节信息插入到内容表中
-	// 			for(var j=0;j<chapters.length;j++){
-	// 				var sql = "insert into tbl_content(chapter,content,sub_id) values(?,?,?)";
-	// 				dbUtil.excute(sql,[chapters[j],contents[j],subjectsId],function(result){
-	// 				});
-	// 			};
-	// 			//重定向，跳转到个人发布信息页面
-	// 			res.redirect("/toPublish");		
-	// 		});
-	// 	}else{
-	// 	// 	//保存编辑页面
-	// 	// 	var sql = "delete from tbl_content where sub_id=?";
-	// 	// 	dbUtil.excute(sql,[req.params.changesubId],function(result){
-	// 	// 		if(result){
-	// 	// 			var sql = "update tbl_subjects set ? where id= ?";
-	// 	// 			dbUtil.excute(sql,[params,req.params.changesubId],function(result){
-	// 	// 				//把该发布的所有章节信息插入到内容表中
-	// 	// 				for(var j=0;j<chapters.length;j++){
-	// 	// 					var sql = "insert into tbl_content(chapter,content,sub_id) values(?,?,?)";
-	// 	// 					dbUtil.excute(sql,[chapters[j],contents[j],req.params.changesubId],function(result){
-	// 	// 						console.log("插入成功");
-	// 	// 					});
-	// 	// 				};
-	// 	// 				//重定向，跳转到个人发布信息页面
-	// 	// 				res.redirect("/toPublish");		
-	// 	// 			});	
-	// 	// 		}
-	// 	// 	});
-		
-	// 	}
-	// });
 });
 //删除发布内容路由
 showRouter.get("/delsubject/d/:d/manage/:manage",function(req,res){
@@ -167,7 +121,6 @@ showRouter.get("/delsubject/d/:d/manage/:manage",function(req,res){
 			});
 		});
 	});
-	
 });
 //修改发布课程路由
 showRouter.get("/changePublish/changeId/:changeId/manage/:manage",function(req,res){
@@ -205,12 +158,13 @@ showRouter.get("/notesDetele/id/:id",function(req,res) {
 });
 //笔记和内容详细页面
 showRouter.get("/toDetails/notes/:notes/dist/:dist/active/:active",function(req,res){
-	var dist = req.params.dist;
+	var notes = req.params.notes;
+	var dist =  req.params.dist;
 	var active = parseInt(req.params.active,10);
 	if(dist=="1"){
 		var sql = "select * from tbl_content where sub_id=?";
 		dbUtil.excute(sql,req.params.notes,function(result){
-			result.notes = dist;
+			result.notes = notes;
 			result.active = active;
 			res.render("details",{"notesDetail":result});
 		});
@@ -289,18 +243,17 @@ showRouter.get("/toWebjob",function(req,res){
 showRouter.get("/toDiscuss/a/:a",function(req,res){
 	var params = req.params;
 	req.session.subjectsId = params.a;
-	//查询该课程的评论信息
-	//查询该课程的章节信息
-	var sql1= "select con.id,con.content,con.chapter,sub.title,sub.dataTitle,sub.descript,levels.relName from tbl_content con,tbl_subjects sub,tbl_levels levels where levels.id=sub.level_id and sub.id=con.sub_id and sub.id=?";
+	var sql1= "select con.id,con.content,con.chapter,sub.title,sub.dataTitle,sub.descript," +
+		"levels.relName from tbl_content con,tbl_subjects sub,tbl_levels levels where " +
+		"levels.id=sub.level_id and sub.id=con.sub_id and sub.id=?";
 	dbUtil.excute(sql1,[params.a],function(result1){
-		if(result1){
-			//获取该课程的评论
+		if(result1){//获取该课程的评论
 		    result1.sub_id = req.params.a
-			var sql2 = "select u.username,u.photo,d.discuss from tbl_user u,tbl_discuss d where d.u_id=u.id and d.sub_id=?";
+			var sql2 = "select u.username,u.photo,d.discuss from tbl_user u,tbl_discuss d " +
+				"where d.u_id=u.id and d.sub_id=?";
 			dbUtil.excute(sql2,[params.a],function(result2){
-				//把查询到的课程信息和评论信息传递给前端页面，并渲染出页面
 
-				res.render("discuss",{"content":result1,"discuss":result2});
+				res.render("discuss",{"content":result1,"discuss":result2});//传递信息，并渲染出页面
 			});	
 		}
 	});
@@ -310,8 +263,7 @@ showRouter.get("/download/pathId/:pathId",function(req,res){
 	var sql = "select dataUrl from tbl_subjects where id=?"
 	dbUtil.excute(sql,[pathId],function(result){			
 		res.download(result[0].dataUrl);
-	});	
-	
+	});
 });
 //添加评价路由
 showRouter.post("/addDiscuss",function(req,res){
@@ -325,6 +277,14 @@ showRouter.post("/addDiscuss",function(req,res){
 		res.redirect("/toDiscuss/a/"+req.session.subjectsId);
 	});
 });
+//2、进行用户验证
+		/*
+		 1)、在数据库查找该用户，判断该用户是否存在
+		 2)、如果用户存在，获取数据库密码与用户输入密码匹配，如果密码正确，则登录成功，否则重新登录
+		 3)、登录成功后将用户信息保存到session中
+		 	session是一次会话，登录者第一次访问用户时就创建了一个session,会一直维护在服务器中，
+		 	除非手动删除或过期
+*/
 //创建登录路由
 showRouter.post("/login",function(req,res){
 	res.locals.related = req.session.related;//保存个人搜索信息
@@ -338,7 +298,6 @@ showRouter.post("/login",function(req,res){
 			if(result&&result.length>0){
 				var stu = result[0]
 				if(password==stu.password){
-					//将登录的用户信息保存到session中
 					//跳转到首页
 					res.redirect("/tomanage");
 				}else{
@@ -351,14 +310,6 @@ showRouter.post("/login",function(req,res){
 			}
 		});
 	}else{
-		//2、进行用户验证
-		/*
-		 1)、在数据库查找该用户，判断该用户是否存在
-		 2)、如果用户存在，获取数据库密码与用户输入密码匹配，如果密码正确，则登录成功，否则重新登录
-		 3)、登录成功后将用户信息保存到session中
-		 	session是一次会话，登录者第一次访问用户时就创建了一个session,会一直维护在服务器中，
-		 	除非手动删除或过期
-		*/
 		var sql = "select * from tbl_user where username=?";
 		dbUtil.excute(sql,[username,manage],function(result){
 			if(result&&result.length>0){
@@ -408,9 +359,8 @@ showRouter.get("/search/val/:val",function(req,res){
 	var val = req.params.val;
 	req.session.related = val;
 	var term = '%'+val+'%';
-	var sql = "select sub.id,sub.title,sub.descript,sub.showPhoto from tbl_subjects sub,tbl_department det,tbl_topics tps where (sub.title like ? or sub.descript like ? or det.relName like ? or tps.name like ?) and sub.department_id=det.id and sub.level_id=tps.id";
+	var sql = "select sub.id,sub.title,sub.descript,sub.showPhoto,det.relName,tps.name from tbl_subjects sub,tbl_department det,tbl_topics tps where (sub.title like ? or det.relName like ? or tps.name like ?) and sub.department_id=det.id and sub.topics_id=tps.id and sub.reviewed='通过'";
 	dbUtil.excute(sql,[term,term,term,term],function(result){
-		// console.log(result);
 		res.render("search",{"subjects":result,"related":val});
 	});
 });
@@ -430,12 +380,15 @@ showRouter.get("/tomanage",function(req,res){
 });
 //创建后台删除用户路由
 showRouter.get("/usermanageDelete/id/:id",function(req,res){
-	var sql ="delete from tbl_content where sub_id=?"
-	dbUtil.excute(sql,[req.params.d],function(result){
-		var sql1 = "delete from tbl_discuss where sub_id=?";
-		dbUtil.excute(sql1,[req.params.d],function(result){
-			var sql2 = "delete from tbl_subjects where id=?";
-			dbUtil.excute(sql2,[req.params.d],function(result){
+	var sql ="delete from tbl_content where sub_id=(select id from tbl_subjects where u_id=?)";
+	dbUtil.excute(sql,[req.params.id],function(result){
+		var sql1 = "delete from tbl_discuss where sub_id=(select id from tbl_subjects where u_id=?)";
+		dbUtil.excute(sql1,[req.params.id],function(result){
+			var sqlnotes = "delete from tbl_notes where u_id = ?";
+			dbUtil.excute(sqlnotes,[req.params.id],function(){
+			});
+			var sql2 = "delete from tbl_subjects where u_id=?";
+			dbUtil.excute(sql2,[req.params.id],function(result){
 				var sql3 = "delete  from tbl_user where id=?";
 				dbUtil.excute(sql3,req.params.id,function(result){
 					res.redirect("/tomanage");
@@ -485,13 +438,10 @@ showRouter.post("/changesub/id/:id",function(req,res){
 showRouter.get("/auditing/ispage/:ispage",function(req,res){
 	var ids = req.query.ids;
 	var idstring = "";
-	//把数据中数据存储到括号里
 	for(var i=0;i<ids.length;i++){
 		idstring+=ids[i]
 		if(i<(ids.length-1)){
-			idstring+=",";
-		}
-	}
+			idstring+=",";}}
 	if(req.params.ispage=="ok"){
 		var sql = "update tbl_subjects set reviewed='通过' where id in ("+idstring+")";
 		dbUtil.excute(sql,"",function(result){
@@ -506,17 +456,12 @@ showRouter.get("/auditing/ispage/:ispage",function(req,res){
 				var sql2 = "delete from tbl_subjects where id in ("+idstring+")";
 				dbUtil.excute(sql2,[req.params.d],function(result){
 					console.log("删除成功");
-					res.redirect("/tomanage");
-				});
-			});
-		});
+					res.redirect("/tomanage");});});});
 	}else if(req.params.ispage=="discuss"){
 		var sql = "delete from tbl_discuss where id in ("+idstring+")";
 		dbUtil.excute(sql,"",function(result){
-			console.log("删除评论成功");
-			res.redirect("/tomanage");
-		});
-	}
+			//console.log("删除评论成功");
+			res.redirect("/tomanage");});}
 });
 module.exports = showRouter;
 

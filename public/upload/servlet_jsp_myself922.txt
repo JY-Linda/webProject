@@ -1,0 +1,166 @@
+1、tomcat的目录结构
+	bin       存放启动和关闭Tomcat的脚本文件
+	conf      存放Tomcat服务器的各种配置文件，server.xml,web.xml等
+	lib       存放Tomcat服务器和所有web应用程序需要访问的JAR文件
+	logs      存放Tomcat的日志文件
+	temp      存放Tomcat运行时产生的临时文件
+	webapps   当发布web应用程序时，通常把web应用程序的目录及文件放在这个目录下
+	work      Tomcat将JSP生成的servlet源文件和字节码文件存放到这个目录下
+
+2、HttpServlet
+	当容器接收一个针对HttpServlet对象的请求时，调用该对象中的方法顺序如下：
+	1、调用公共的service()方法
+	2、在公共的service()方法中，首先将参数类型转换为HttpServletRequest和HttpServletResponse,
+	   然后调用保护的service()方法，将转换后的对象作为参数传递进去。
+	3、在保护的service()方法中，首先调用HttpServletRequest对象的getMethod方法，
+	   获取HTTP请求方法的名称。然后根据请求方法的类型，调用相应的doXxx方法
+3、Servlet生命周期
+    1) 创建
+      调用无参构造器
+      默认在第一次访问的时候创建，只会创建一次
+    2) 初始化
+      调用init(ServletConfig config)
+    3) 处理请求，给出回应
+      service(ServletRequest req,ServletResponse resp);
+    4) 销毁
+      tomcat重启或者关闭之前的销毁,调用destory()方法，释放资源
+
+4、设置编码
+	post
+	    req.setCharacterEncoding();
+	    resp.setCharacterEncoding();
+	get
+            server.xml(URIEncoding)
+	获取参数
+	request.getParameter("name");//获取单参数,列姓名
+	request.getParameterValues();//获取多参数，列爱好
+
+4、跳转
+	1、ReuqestDispatcher接口(分发器对象，内部跳转)
+		在服务器内部由一个Servlet跳转到另外一个Servlet,这两个Servlet共用同一个request,response
+		a、forword(req,resp)(输出流清空)
+			在跳转之前out.flush() 报错
+		b、include(req,rep)(输出流合并)
+			在跳转之前out.flush() 不会报错
+			在跳转之前out.close() 不会报错，只显示第一个servlet内容
+	特点：
+	      1.浏览器地址栏的地址不会发生变化  a-b   a
+     	      2.跳转发生在服务器的内部，实际上浏览器只向服务器发送了一次请求
+	2、sendRedirect(外部跳转，重定向跳转)
+		response.sendRedirect();
+	特点：
+	      1.浏览器地址栏的地址发生变化  a-b   b
+              2.浏览器实际上向服务器发送了两次请求
+
+5、地址
+	相对路径
+	   相对该代码所在的位置
+	绝对路径
+	   前台 / 代表服务器的根目录
+		html页面，jsp页面，重定向
+	   后台 / 代表的是项目根目录
+6、配置文件
+	<load-on-startup></load-on-startup>  
+	servlet加载时机
+        延迟加载  第一次访问该对象的时候创建
+        立即加载  当启动tomcat服务器的时候创建
+		注册： 第一次连接数据库
+		<load-on-startup></load-on-startup>
+		负数或者空  延迟加载
+ 		整数或者0   立即加载
+	
+7、数据持久化
+	1、session
+	       1)session的创建
+   		HttpSession session = request.getSession();
+
+  		客户端向服务器端发送请求，如果要访问的servlet要创建session
+  		web容器先判断该请求中是否包含jsessionid，如果不包含，直接创建
+   		一个新的Session,并且将该session的id封装到cookie中，发送到浏览器端
+   		---------------------------------------------------
+    		 Cookie cookie = new Cookie("jsessionid","1001");
+     		 response.addCookie(cookie);
+   		---------------------------------------------------
+
+  		当再次向服务器端（支持session的servlet）发送请求，要将浏览器
+   		端所有的cookie发送到服务器端，servlet将根据该jsessionid找出
+  		对应session,如果找不到创建一个新的
+	2、cookie
+			
+		 1)创建： Cookie cookie = new Cookie(string,string);
+ 		 2)设置存活时间
+	 		cookie.setMaxAge(int);
+    		  如果不设置，浏览器关闭时即删除
+    		  如果设置
+                    0  立即删除
+                    >0 以秒为单位
+           	 3)保存到浏览器端
+    		 	response.addCookie(cookie);
+    			cookie创建于服务器端，保存到客户端。
+   			当每次客户端向服务器端发送请求的时候，都会将客户端所有的
+    			cookie发送到服务器端。
+   
+  		 4) 获取cookie
+  			Cookie[] cookies = request.getCookies();
+  		 5) 当cookie中保存中文时要设置编码
+    			java.net
+    			String URLEncoder.encode(val,enc)
+    			String URLDecoder.decode(val,enc)
+	3、存放数据的对象
+		1）request(只能存在一次请求中)
+			
+			request.setAttribute(key,val);
+	 		request.getAttribute(key);
+		2）session(回话 从回话开始到回话结束一直存在)
+			1、创建
+				 HttpSession session = request.getSession();
+			2) 缓存数据
+    				 session.setAttribute(key,val);
+   				 session.getAttribute(key);
+  			3) 设置发呆时间
+    				 session.setMaxInActiveInterval(30);
+     		3)ServletContext 上下文环境，从项目启动到项目关闭
+			ServletContext context = getServletContext();
+			  context.setAttribute(key,val);
+  			  context.getAttribute(key);
+8、监听器
+	 ServletContextListener	          监听Servlet上下文对象初始化或者被销毁
+    	 ServletContextAttributeListener  监听Servlet上下文中的属性列表的变化
+
+   	 HttpSessionListener		  监听Session声明周期
+   	 HttpSessionActionListener	  监听session被钝化或者激活
+   	 HttpSessionAttributeListener	  监听Session属性列表发生的变化
+   	 HttpSessionBindingListener	  监听Session中是否有对象绑定或者删除，该对象要实现这个接口
+				
+
+   	 ServletRequestListener	 	  监听ServletRequest对象声明周期
+   	 ServletRequestAttributeListener  监听ServletRequest属性列表发生的变化
+
+9、过滤器
+      Filter接口
+     	init(FilterConfig filterConfig)
+	   初始化过滤器。filterconfig用来获取ServletContext,初始化参数。
+        doFilter(ServletRequest request,ServletResponse response,FilterChain chain);
+	   实现过滤功能。可以调用chain.doFilter(request,response)方法将请求传递给
+	   下一个过滤器或者目标资源，也可以直接向客户端返回响应信息。
+        destory()
+	   结束过滤器的声明周期。
+      <!--指定过滤器对应的请求方式，默认request-->
+	  <dispatcher>REQUEST,INCLUDE,FORWARD,ERROR</dispatcher>
+      dispatcher:
+        REQUEST	 当用户直接访问页面时，web容器将会调用过滤器，但是当通过include,
+		 forward()方法调用时，该过滤器不会被调用
+        INCLUDE	 目标资源通过include()方法访问该过滤器才会被调用
+        FORWARD	 目标资源通过forward()方法访问该过滤器才会被调用
+        ERROR	 目标资源是通过声明式异常处理机制调用时，该过滤器才会被调用			
+10、JSP（java server pages）	
+	第一次访问jsp  
+ 	tomcat
+ 	   翻译阶段： jsp->java
+  	   编译阶段： java->class
+  	   运行    ： 类加载
+	   开始servlet声明周期
+	  	 创建
+	 	 初始化
+		 处理
+	 	 销毁	
